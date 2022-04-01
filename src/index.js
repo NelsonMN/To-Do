@@ -24,21 +24,40 @@ const Task = (title, details, priority, dueDate, status) => {
     }
 };
 
-
+// Project Factory
 const Project = (title) => {
-    const getProjectTitle = (() => title)();
-    const setProjectTitle = (newTitle) => title = newTitle;
+    const getTitle = (() => title)();
+    const setTitle = (newTitle) => title = newTitle;
 
-    const tasks = []
+    let tasks = []
 
     const getTasks = (() => tasks)();
-    const setTasks = newTasks => tasks = newTasks
     
-    const getTask = {}
+    const getTask = taskTitle => {
+        return tasks.find((task) => taskTitle === task.getTitle)
+    }
 
-    const containsTask = {}
+    const containsTask = taskTitle => {
+        return tasks.some((task) => taskTitle === task.getTitle)
+    }
 
-    const addTask = {}
+    const addTask = task => {
+        tasks.push(task)
+    }
 
-    const deleteTask = {}
+    const removeTask = taskTitle => {
+        tasks = tasks.filter((task) => taskTitle !== task.getTitle)
+    }
+
+    return {
+        getTitle, setTitle,
+        getTasks,
+        getTask,
+        containsTask,
+        addTask, removeTask
+    }
 }
+
+// To Do List Factory
+
+const toDoList = {}
