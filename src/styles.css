@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* HEADER */
+
+.header {
+    padding: 20px;
+    border: solid 2px black
+}
+
+/* SIDEBAR */
+
+.side-bar {
+    display: flex;
+}
+
+/* CONTENT */
