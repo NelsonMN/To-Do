@@ -15,6 +15,13 @@ const Task = (title, details, priority, dueDate, status) => {
     const getStatus = () => status;
     const setStatus = newStatus  => status = newStatus;
 
+    const formatDate = function() {
+        const month = date.split('/')[0]
+        const day = date.split('/')[1]
+        const year = date.split('/')[2]
+        return `${month}/${day}/${year}`
+    }   
+
     return {
         getTitle, setTitle, 
         getDetails, setDetails, 

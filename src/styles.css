@@ -4,12 +4,21 @@
     box-sizing: border-box;
 }
 
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 28px;
+}
+
 /* HEADER */
 
 .header {
-    padding: 20px;
+    padding: 20px 10px;
     border: solid 2px black;
-    height: 80px
+    border-right: none;
+    height: 80px;
 }
 
 /* CONTENT */
@@ -18,16 +27,47 @@
     display: flex;
 }
 
+.content {
+    padding: 20px;
+    width: calc(100vw - min(30vw, 300px));
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task {
+    display: flex;
+    gap: 20px;
+    border: 2px solid black;
+}
+
 /* SIDEBAR */
 
 .sidebar {
     display: flex;
     flex-direction: column;
-    padding: 50px 0;
-    align-items: center;
+    padding: 50px 10px 0 10px;
     gap: 20px;
-    width: max(15vw, 300px);
+    width: min(30vw, 300px);
     min-height: calc(100vh - 80px);
     border: 2px solid black;
     border-top: none;
 }
+
+.views,
+.projects {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.views, .projects > li {
+    text-decoration: none;
+    list-style-type: none;
+    cursor: pointer;
+    font-size: 28px;
+}
+
