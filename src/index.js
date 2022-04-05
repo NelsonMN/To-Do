@@ -1,5 +1,7 @@
+import { isDate, toDate, isThisWeek, isToday } from "date-fns";
+
 // Task Factory
-const Task = (title, details, priority, dueDate, status) => {
+const Task = (title = '', details = '', priority = 'Low', dueDate = 'No Due Date', status = 'Not Complete') => {
     const getTitle = () => title;
     const setTitle = newTitle => title = newTitle;
 
@@ -13,14 +15,7 @@ const Task = (title, details, priority, dueDate, status) => {
     const setDueDate = newDueDate => dueDate = newDueDate;
 
     const getStatus = () => status;
-    const setStatus = newStatus  => status = newStatus;
-
-    const formatDate = function() {
-        const month = date.split('/')[0]
-        const day = date.split('/')[1]
-        const year = date.split('/')[2]
-        return `${month}/${day}/${year}`
-    }   
+    const setStatus = newStatus  => status = newStatus;   
 
     return {
         getTitle, setTitle, 
@@ -39,6 +34,8 @@ const Project = (title) => {
     let tasks = [];
 
     const getTasks = () => tasks;
+
+    const setTasks = (newTasks) => tasks = newTasks;
     
     const getTask = taskTitle => {
         return tasks.find((task) => taskTitle === task.getTitle())
@@ -54,9 +51,13 @@ const Project = (title) => {
         tasks = tasks.filter((task) => taskTitle !== task.getTitle());
     };
 
+    const todayTasks = (tasks) => {}
+
+    const weekTaksks = (tasks) => {}
+
     return {
         getTitle, setTitle,
-        getTasks,
+        getTasks, setTasks,
         getTask,
         containsTask,
         addTask, removeTask
@@ -85,6 +86,12 @@ const ToDoList = () => {
         projects = projects.filter((project) => projectTitle !== project.getTitle())
     }
 
+    const setAllTasks = () => {}
+
+    const setToday = () => {}
+
+    const setThisWeek = () => {}
+
     return {
         getProjects,
         getProject,
@@ -92,3 +99,5 @@ const ToDoList = () => {
         addProject, removeProject
     }
 }
+
+export {Task, Project, ToDoList}

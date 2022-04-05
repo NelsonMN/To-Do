@@ -1,7 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: [
+    './src/index.js',
+    './src/user-interface.js'
+  ],
   devtool: 'inline-source-map',
   output: {
     filename: 'main.js',
@@ -10,7 +13,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
       {

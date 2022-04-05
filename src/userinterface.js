@@ -1,1 +1,0 @@
-const tasks = document.querySelector('.tasks')

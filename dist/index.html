@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do App</title>
     <link rel="stylesheet" href="../src/styles.css">
+    
 </head>
 <body>
-    <script src="main.js"></script>
     <div class="header">
         <h1 class="main-title">To-Do</h1>
     </div>
@@ -25,9 +25,9 @@
             <div class="projects">
                 <h2>Projects</h2>
                 <ul class="projects">
-                    <li class="project">Gym</li>
-                    <li class="project">Study</li>
-                    <li class="project">Home</li>
+                    <li class="project">Gym <span>&times;</span></li>
+                    <li class="project">Study <span>&times;</span></li>
+                    <li class="project">Work <span>&times;</span></li>
                 </ul>
             </div>
             <button class="add-project">Add Project</button>
@@ -40,14 +40,60 @@
                     <h4>Title</h4>
                     <h4>Priority</h4>
                     <h4>Due Date</h4>
-                    
+                    <h4>Status</h4>
                 </div>
-                <button class="add-task">Add Task</button>
+            <button data-modal-target = "#modal" class="add-task">Add Task</button>
             </div>
+
+            <div class="modal" id="modal">
+
+                <div class="modal-header">
+                    <strong><span>New Task</span></strong>
+                    <button data-close-button class="close-button">&times;</button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="new-task">
+                        <div id="title-priority">
+                            <div>
+                                <label for="title">Title:</label>
+                                <input type="text" id="title" name="title">
+                            </div>
+                            <div>
+                                <label for="due-date">Due Date:</label>
+                                <input type="date" name="due-date" id="due-date">
+                            </div>
+                            <div>
+                                <label for="priority">Priority:</label>
+                                <select name="priority" id="priority">
+                                    <option value="low" selected>Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="details">Details:</label>
+                            <textarea name="details" id="details" cols="50" rows="10"></textarea>
+                        </div>
+                        <div id="status-submit">
+                            <div id="status">
+                                <label for="status">Status:</label>
+                                <input type="checkbox" name="status" id="completed">
+                            </div>
+                            <button id="submit-task" data-close-button type="submit">Add Task</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+            <div id="overlay"></div>
+            
         </div>
     </div>
-
-
+    <script src="main.js"></script>
 
 </body>
 </html>
