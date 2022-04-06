@@ -12,6 +12,7 @@ h3 {
     font-size: 28px;
 }
 
+
 /* HEADER */
 
 .header {
@@ -20,6 +21,7 @@ h3 {
     border-right: none;
     height: 80px;
 }
+
 
 /* CONTENT */
 
@@ -39,13 +41,56 @@ h3 {
     margin: 10px 50px;
 }
 
+/* Task UI */
+
 .task {
     display: flex;
-    justify-content: space-evenly;
-    border: 2px solid black;
-    padding: 10px 0;
+    border: 1px solid black;
+    padding: 10px 20px;
     height: inherit;
+    align-items: center;
+    justify-content: space-between;
 }
+
+.task-checkbox {
+    height: 15px;
+    width: 15px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.first-task-elements {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.last-task-elements{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.delete-symbol {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.delete-symbol:hover {
+    color: rgb(0, 167, 0);
+    transform: scale(1.1);
+  }
+
+.edit-symbol {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-symbol:hover {
+    color: rgb(0, 167, 0);
+    transform: scale(1.1);
+  }
+
 
 /* SIDEBAR */
 
@@ -87,6 +132,7 @@ h3 {
 
 
 /* MODAL */
+
 fieldset {
     border: none;
 }
@@ -97,15 +143,19 @@ fieldset {
     justify-content: space-between;
 }
 
-#status {
+.status {
     display: flex;
-    gap:8px;
+    gap: 8px;
 }
 
 #status-submit {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+}
+
+#details {
+    resize: none;
 }
 
 input, label {
@@ -127,7 +177,7 @@ input {
     z-index: 10;
     background-color: white;
     width: 500px;
-    max-width: 80%;
+    /* max-width: 80%; */
 }
 
 .modal.active {
