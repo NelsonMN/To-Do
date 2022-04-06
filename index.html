@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do App</title>
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="../src/styles.css">
-    
 </head>
 <body>
     <div class="header">
@@ -35,16 +35,6 @@
 
         <div class="content">
             <h3>Project Name</h3>
-            <div class="tasks">
-                <div class="task">
-                    <h4>Title</h4>
-                    <h4>Priority</h4>
-                    <h4>Due Date</h4>
-                    <h4>Status</h4>
-                </div>
-            <button data-modal-target = "#modal" class="add-task">Add Task</button>
-            </div>
-
             <div class="modal" id="modal">
 
                 <div class="modal-header">
@@ -58,15 +48,15 @@
                         <div id="title-priority">
                             <div>
                                 <label for="title">Title:</label>
-                                <input type="text" id="title" name="title">
+                                <input type="text" id="title" name="title" required/>
                             </div>
                             <div>
                                 <label for="due-date">Due Date:</label>
-                                <input type="date" name="due-date" id="due-date">
+                                <input type="date" name="due-date" id="due-date" required/>
                             </div>
                             <div>
                                 <label for="priority">Priority:</label>
-                                <select name="priority" id="priority">
+                                <select name="priority" id="priority" required>
                                     <option value="low" selected>Low</option>
                                     <option value="medium">Medium</option>
                                     <option value="high">High</option>
@@ -75,21 +65,39 @@
                         </div>
                         <div>
                             <label for="details">Details:</label>
-                            <textarea name="details" id="details" cols="50" rows="10"></textarea>
+                            <textarea name="details" id="details" cols="56" rows="10"></textarea>
                         </div>
                         <div id="status-submit">
-                            <div id="status">
+                            <div class="status">
                                 <label for="status">Status:</label>
-                                <input type="checkbox" name="status" id="completed">
+                                <input type="checkbox" name="status" id="status">
                             </div>
-                            <button id="submit-task" data-close-button type="submit">Add Task</button>
+                            <button type="submit" id="submit-task" data-close-button>Add Task</button>
                         </div>
                     </form>
 
                 </div>
 
             </div>
+
             <div id="overlay"></div>
+
+            <div class="tasks">
+                <div id="0" class="task">
+                    <div class="first-task-elements">
+                        <div class="task-checkbox"></div>
+                        <div class="task-title">Title</div>
+                    </div>
+                    <div class="last-task-elements">
+
+                        <div class="task-due-date">Due Date</div>
+                        <div class="task-edit"><span class="material-icons-outlined edit-symbol">edit</span></div>
+                        <div class="task-delete"><span class="material-icons-outlined delete-symbol">delete</span></div>
+                    </div>
+                </div>
+            </div>
+            <button data-modal-target = "#modal" class="add-task">Add Task</button>
+
             
         </div>
     </div>
