@@ -1,6 +1,7 @@
 import { isDate, toDate, isThisWeek, isToday } from "date-fns";
 
 // Task Factory
+
 const Task = (title = '', details = '', priority = 'Low', dueDate = 'No Due Date', status) => {
     const getTitle = () => title;
     const setTitle = newTitle => title = newTitle;
@@ -27,6 +28,7 @@ const Task = (title = '', details = '', priority = 'Low', dueDate = 'No Due Date
 };
 
 // Project Factory
+
 const Project = (title) => {
     const getTitle = () => title;
     const setTitle = (newTitle) => title = newTitle;

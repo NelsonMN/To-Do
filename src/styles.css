@@ -77,7 +77,7 @@ h3 {
 }
 
 .delete-symbol:hover {
-    color: rgb(0, 167, 0);
+    color: #e40101;
     transform: scale(1.1);
   }
 
@@ -137,11 +137,13 @@ fieldset {
     border: none;
 }
 
+#edit-title-priority,
 #title-priority {
     display: flex;
     border: none;
     justify-content: space-between;
 }
+
 
 .status {
     display: flex;
@@ -151,7 +153,6 @@ fieldset {
 #status-submit {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
 }
 
 #details {
@@ -203,10 +204,12 @@ input {
     padding: 10px 15px;
 }
 
+#edit-new-task,
 #new-task {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    gap: 1px;
 }
 
 #overlay {

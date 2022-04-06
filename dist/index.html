@@ -35,10 +35,12 @@
 
         <div class="content">
             <h3>Project Name</h3>
+
+            <!-- Add Task Modal -->
             <div class="modal" id="modal">
 
                 <div class="modal-header">
-                    <strong><span>New Task</span></strong>
+                    <strong><span class="modal-title">New Task</span></strong>
                     <button data-close-button class="close-button">&times;</button>
                 </div>
 
@@ -52,7 +54,7 @@
                             </div>
                             <div>
                                 <label for="due-date">Due Date:</label>
-                                <input type="date" name="due-date" id="due-date" required/>
+                                <input type="date" name="due-date" id="due-date" placeholder="today"/>
                             </div>
                             <div>
                                 <label for="priority">Priority:</label>
@@ -65,7 +67,7 @@
                         </div>
                         <div>
                             <label for="details">Details:</label>
-                            <textarea name="details" id="details" cols="56" rows="10"></textarea>
+                            <textarea name="details" id="details" cols="56" rows="10" placeholder="Enter some more information"></textarea>
                         </div>
                         <div id="status-submit">
                             <div class="status">
@@ -80,10 +82,58 @@
 
             </div>
 
+            <!-- Edit Modal -->
+
+            <div class="modal" id="edit-modal">
+
+                <div class="modal-header">
+                    <strong><span class="modal-title">Edit Task</span></strong>
+                    <button data-close-button class="close-button">&times;</button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="edit-new-task">
+                        <div id="edit-title-priority">
+                            <div>
+                                <label for="edit-title">Title:</label>
+                                <input type="text" id="edit-title" name="edit-title" required/>
+                            </div>
+                            <div>
+                                <label for="edit-due-date">Due Date:</label>
+                                <input type="date" name="edit-due-date" id="edit-due-date" placeholder="today"/>
+                            </div>
+                            <div>
+                                <label for="edit-priority">Priority:</label>
+                                <select name="edit-priority" id="edit-priority" required>
+                                    <option value="low" selected>Low</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="edit-details">Details:</label>
+                            <textarea name="edit-details" id="edit-details" cols="56" rows="10" placeholder="Enter some more information"></textarea>
+                        </div>
+                        <div id="status-submit">
+                            <div class="status">
+                                <label for="edit-status">Status:</label>
+                                <input type="checkbox" name="status" id="status">
+                            </div>
+                            <button type="submit" id="submit-task" data-close-button>Edit Task</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+
             <div id="overlay"></div>
 
             <div class="tasks">
-                <div id="0" class="task">
+                <div  class="task" id="0">
                     <div class="first-task-elements">
                         <div class="task-checkbox"></div>
                         <div class="task-title">Title</div>
