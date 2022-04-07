@@ -54,11 +54,11 @@
                             </div>
                             <div>
                                 <label for="due-date">Due Date:</label>
-                                <input type="date" name="due-date" id="due-date" placeholder="today"/>
+                                <input type="date" name="due-date" id="due-date" required/>
                             </div>
                             <div>
                                 <label for="priority">Priority:</label>
-                                <select name="priority" id="priority" required>
+                                <select name="priority" id="priority">
                                     <option value="low" selected>Low</option>
                                     <option value="medium">Medium</option>
                                     <option value="high">High</option>
@@ -67,14 +67,14 @@
                         </div>
                         <div>
                             <label for="details">Details:</label>
-                            <textarea name="details" id="details" cols="56" rows="10" placeholder="Enter some more information"></textarea>
+                            <textarea name="details" id="details" cols="56" rows="10" placeholder="Enter more details here!"></textarea>
                         </div>
                         <div id="status-submit">
                             <div class="status">
                                 <label for="status">Status:</label>
                                 <input type="checkbox" name="status" id="status">
                             </div>
-                            <button type="submit" id="submit-task" data-close-button>Add Task</button>
+                            <button data-close-button type="button" id="submit-task">Add Task</button>
                         </div>
                     </form>
 
@@ -105,7 +105,7 @@
                             </div>
                             <div>
                                 <label for="edit-priority">Priority:</label>
-                                <select name="edit-priority" id="edit-priority" required>
+                                <select name="edit-priority" id="edit-priority">
                                     <option value="low" selected>Low</option>
                                     <option value="medium">Medium</option>
                                     <option value="high">High</option>
@@ -119,9 +119,9 @@
                         <div id="status-submit">
                             <div class="status">
                                 <label for="edit-status">Status:</label>
-                                <input type="checkbox" name="status" id="status">
+                                <input type="checkbox" name="edit-status" id="edit-status">
                             </div>
-                            <button type="submit" id="submit-task" data-close-button>Edit Task</button>
+                            <button data-close-button type="submit" id="edit-task-submit">Edit Task</button>
                         </div>
                     </form>
 
@@ -133,7 +133,7 @@
             <div id="overlay"></div>
 
             <div class="tasks">
-                <div  class="task" id="0">
+                <div class="task" id="0">
                     <div class="first-task-elements">
                         <div class="task-checkbox"></div>
                         <div class="task-title">Title</div>

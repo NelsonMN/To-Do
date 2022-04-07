@@ -1,4 +1,5 @@
 import { isDate, toDate, isThisWeek, isToday } from "date-fns";
+import { id } from "date-fns/locale";
 
 // Task Factory
 
@@ -52,10 +53,6 @@ const Project = (title) => {
     const removeTask = taskTitle => {
         tasks = tasks.filter((task) => taskTitle !== task.getTitle());
     };
-
-    const todayTasks = (tasks) => {}
-
-    const weekTaksks = (tasks) => {}
 
     return {
         getTitle, setTitle,
