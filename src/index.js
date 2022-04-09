@@ -64,3 +64,5 @@ const ToDo = () => {
     
     return {getProject, getProjects, addProject, removeProject}
 };
+
+export {Task, Project, ToDo}
