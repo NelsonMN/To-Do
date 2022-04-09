@@ -6,27 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do App</title>
     <link rel="stylesheet" href="../src/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
-    <script src="main.js"></script>
     <div class="content">
+
+        <button id="new-task" data-modal-target="#form" >Add Task</button>
 
         <div class="tasks">
 
             <div class="task">
                 <div class="first-task-elements">
-                    <div class="title"></div>
+                    <div class="title">Task Title</div>
                 </div>
-                <div class="last-task-elemnets">
-                    <div class="due-date"></div>
-                    <span class="edit"></span>
-                    <span class="delete"></span>
+                <div class="last-task-elements">
+                    <div class="due-date">Due Date</div>
+                    <span class="edit material-icons-outlined">edit</span>
+                    <span class="delete material-icons-outlined">delete</span>
                 </div>
             </div>
 
         </div>
 
-        <div id="form">
+        <div class="form" id="form">
             <div class="modal-header">
                 <span><strong>Add/Edit Task</strong></span>
                 <button data-close-button class="remove">&times;</button>
@@ -34,10 +36,22 @@
 
             <form class="form-card">
                 <div class="title-div">
-                    <input id="title" type="text" placeholder="Title"> 
+                    <div class="title">
+                        <label for="title">Title:</label>
+                        <input id="title" type="text" placeholder="Title">
+                    </div>
+                    
+                    <div class="priority">
+                        <label for="priorty">Priority:</label> 
+                        <select name="priority" id="priority">
+                            <option value="Low" selected>Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="description-div">
-                    <textarea id="description" cols="40" rows="10" placeholder='Description'></textarea>
+                    <textarea id="description" cols="50" rows="10" placeholder='Description'></textarea>
                 </div>
                 <div class="date-status-div">
                     <div class="due-date">
@@ -54,6 +68,9 @@
                 </div>
             </form>
         </div>
-    </div>   
+
+        <div id="overlay"></div>
+    </div>
+    <script src="main.js"></script>   
 </body>
 </html>
