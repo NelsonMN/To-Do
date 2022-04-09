@@ -9,12 +9,51 @@
 </head>
 <body>
     <script src="main.js"></script>
-    <div class="tasks">
-        <div class="task">
-            <div class="title"></div>
-            <div class="due-date"></div>
-            <div class="status"></div>
+    <div class="content">
+
+        <div class="tasks">
+
+            <div class="task">
+                <div class="first-task-elements">
+                    <div class="title"></div>
+                </div>
+                <div class="last-task-elemnets">
+                    <div class="due-date"></div>
+                    <span class="edit"></span>
+                    <span class="delete"></span>
+                </div>
+            </div>
+
         </div>
-    </div>
+
+        <div id="form">
+            <div class="modal-header">
+                <span><strong>Add/Edit Task</strong></span>
+                <button data-close-button class="remove">&times;</button>
+            </div>
+
+            <form class="form-card">
+                <div class="title-div">
+                    <input id="title" type="text" placeholder="Title"> 
+                </div>
+                <div class="description-div">
+                    <textarea id="description" cols="40" rows="10" placeholder='Description'></textarea>
+                </div>
+                <div class="date-status-div">
+                    <div class="due-date">
+                        <label for="due-date">Due Date:</label>
+                        <input type="date" id="due-date" name="due-date">
+                    </div>
+                    <div class="status">
+                        <label for="status">Complete?</label>
+                        <input type="checkbox" id="status" name="status">
+                    </div>
+                </div>
+                <div class="submit">
+                    <button data-close-button class="add-edit-task" type="submit">Add!</button>
+                </div>
+            </form>
+        </div>
+    </div>   
 </body>
 </html>

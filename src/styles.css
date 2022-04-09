@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.content {
+    display: inline-block;
+}
+
+/* Form */
+
+#form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px 10px;
+    position: fixed;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out; */
+    border: 1px solid black;
+    z-index: 10;
+    background-color: white;
+
+}
+
+input {
+    height: 20px;
+}
+
+.form-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 8px;
+}
+
+#description {
+    resize: none;
+}
+
+.date-status-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.due-date,
+.status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.submit {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+}
+
+.remove {
+    background: none;
+	color: inherit;
+	border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.add-edit-task {
+    padding: 5px 10px;
+}
