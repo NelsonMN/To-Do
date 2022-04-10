@@ -17,7 +17,7 @@
 
             <div class="task">
                 <div class="first-task-elements">
-                    <div class="title">Task Title</div>
+                    <div class="title">Title</div>
                 </div>
                 <div class="last-task-elements">
                     <div class="due-date">Due Date</div>
@@ -30,7 +30,7 @@
 
         <div class="form" id="form">
             <div class="modal-header">
-                <span><strong>Add/Edit Task</strong></span>
+                <span><strong>Add Task</strong></span>
                 <button data-close-button class="remove">&times;</button>
             </div>
 
@@ -64,7 +64,48 @@
                     </div>
                 </div>
                 <div class="submit">
-                    <button data-close-button class="add-edit-task" type="submit">Add!</button>
+                    <button data-close-button class="add-task" type="submit">Add Task!</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="form" id="edit-form">
+            <div class="modal-header">
+                <span><strong>Edit Task</strong></span>
+                <button data-close-button class="remove">&times;</button>
+            </div>
+
+            <form class="form-card">
+                <div class="title-div">
+                    <div class="title">
+                        <label for="edit-title">Title:</label>
+                        <input id="edit-title" type="text" name="edit-title" placeholder="Title">
+                    </div>
+                    
+                    <div class="priority">
+                        <label for="edit-priorty">Priority:</label> 
+                        <select name="edit-priority" id="edit-priority">
+                            <option value="Low" selected>Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="description-div">
+                    <textarea id="edit-description" cols="50" rows="10" placeholder='Description'></textarea>
+                </div>
+                <div class="date-status-div">
+                    <div class="due-date">
+                        <label for="edit-due-date">Due Date:</label>
+                        <input type="date" id="edit-due-date" name="edit-due-date">
+                    </div>
+                    <div class="status">
+                        <label for="edit-status">Complete?</label>
+                        <input type="checkbox" id="edit-status" name="edit-status">
+                    </div>
+                </div>
+                <div class="submit">
+                    <button data-close-button class="edit-task" type="submit">Edit Task!</button>
                 </div>
             </form>
         </div>
