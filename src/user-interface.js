@@ -92,12 +92,12 @@ function updateTaskUI(id) {
 
 // Task Event Listeners
 
-// the variable to access a specific task id for editing
-let taskId
+let taskId // the variable to access a specific task id for editing
 
 const tasksDiv = document.querySelector(".tasks")
 tasksDiv.addEventListener('click', (e) => {   
 
+    // Edit
     if (e.target.matches("span") && e.target.textContent == "edit") {
         const form = document.querySelector("#edit-form");
         openForm(form)
@@ -124,6 +124,7 @@ tasksDiv.addEventListener('click', (e) => {
             taskCheckbox.checked = false
         }        
 
+    // Delete  
     } else if (e.target.matches("span") && e.target.textContent == "delete") {
         const task = e.target.parentNode.parentNode
         defaultProject.removeTask(task.id)
@@ -131,14 +132,32 @@ tasksDiv.addEventListener('click', (e) => {
     }
 });
 
+// Task Button Functionality
+
+const addTaskButton = document.querySelector('.add-task');
+const editTaskButton = document.querySelector('.edit-task');
+
+addTaskButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    const newTask = createTask()
+    createTaskUI(newTask)
+    defaultProject.addTask(newTask)
+    const formCard = document.querySelector(".form-card");
+    formCard.reset();
+})
+
+editTaskButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    updateTask()
+    updateTaskUI(taskId)
+})
+
 
 // Modal Actions
 
 const openModalButtons = document.querySelectorAll("[data-modal-target]");
 const closeModalButtons = document.querySelectorAll("[data-close-button]");
 const overlay = document.getElementById("overlay");
-const addTaskButton = document.querySelector('.add-task');
-const editTaskButton = document.querySelector('.edit-task');
 
 
 openModalButtons.forEach(button => {
@@ -166,18 +185,3 @@ function closeForm(form) {
     form.classList.remove("active");
     overlay.classList.remove("active");
 }
-
-addTaskButton.addEventListener('click', (e) => {
-    e.preventDefault()
-    const newTask = createTask()
-    createTaskUI(newTask)
-    defaultProject.addTask(newTask)
-    const formCard = document.querySelector(".form-card");
-    formCard.reset();
-})
-
-editTaskButton.addEventListener('click', (e) => {
-    e.preventDefault()
-    updateTask()
-    updateTaskUI(taskId)
-})
