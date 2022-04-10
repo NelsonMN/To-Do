@@ -3,7 +3,8 @@ const path = require('path');
 module.exports = {
   entry: [
     './src/index.js',
-    './src/user-interface.js'
+    './src/user-interface.js'.
+    './src/modal-actions.js'
   ],
   devtool: 'inline-source-map',
   output: {
