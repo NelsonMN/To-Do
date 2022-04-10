@@ -19,6 +19,7 @@
 }
 
 .task {
+    display: block;
     display: flex;
     border: 1px solid black;
     width: 100vw;
@@ -50,7 +51,8 @@
 
 /* Form */
 
-.form {
+.form,
+.edit-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,11 +62,12 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
-    border: 1px solid black;
+    border: 1px solid rgb(102, 100, 100);
     z-index: 10;
     background-color: white;
 }
 
+.edit-form.active,
 .form.active {
     transform: translate(-50%, -50%) scale(1);
 }
@@ -102,7 +105,8 @@ input {
     gap: 8px;
 }
 
-#description {
+#description,
+#edit-description {
     resize: none;
 }
 
@@ -143,6 +147,7 @@ input {
 }
 
 #new-task,
-.add-edit-task {
+.edit-task,
+.add-task {
     padding: 5px 10px;
 }
