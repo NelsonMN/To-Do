@@ -38,7 +38,7 @@
                 <div class="title-div">
                     <div class="title">
                         <label for="title">Title:</label>
-                        <input id="title" type="text" placeholder="Title">
+                        <input id="title" type="text" value="Title">
                     </div>
                     
                     <div class="priority">
@@ -108,6 +108,28 @@
                     <button data-close-button class="edit-task" type="submit">Edit Task!</button>
                 </div>
             </form>
+        </div>
+
+        <div id="task-details">
+            <div class="task-detail" id="task-title">
+                <span>Title:</span>
+                <span id="task-title-output">Title</span>
+            </div>
+            <div class="task-detail"id="task-due-date">
+                <span>Due date:</span>
+                <span id="task-due-date-output">2022-04-11</span>
+            </div>
+            <div class="task-detail" id="task-priority">
+                <span>Priority:</span>
+                <span id="task-priority-output">High</span>
+            </div>
+            <div class="task-detail" id="task-status">
+                <span>Task Status:</span>
+                <span id="task-status-output">Incomplete</span>
+            </div>
+            <div class="task-detail" id="task-detail">
+                <span>Details:</span> 
+                <p id="task-details-output">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti quia, facilis sed, cum ratione sint id distinctio, atque nobis beatae possimus sequi odio. Sit perferendis hic omnis consequatur quod culpa, iure assumenda suscipit. Eius quae, perferendis fuga ratione odio ipsa.</p>
         </div>
 
         <div id="overlay"></div>
