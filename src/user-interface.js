@@ -1,9 +1,18 @@
 import {Task, Project, ToDo} from './index'
-// Initialization:
+// Initialize To-Do List
 
 const toDoList = ToDo()
 
+
+// Initialize Default Project
 const defaultProject = Project('Default Project')
+
+
+// Initialize Form Defaults
+const taskDate = document.getElementById('due-date')
+const todayDate = new Date().toISOString().slice(0, 10);
+taskDate.value = todayDate;
+
 
 // Task UI
 
@@ -40,17 +49,31 @@ function updateTask() {
         taskToEdit.setStatus('Complete')
     } else {
         taskToEdit.setStatus('Incomplete')
-    }     
+    } 
 }
 
 function createTaskUI(task) {
-    const tasksDiv = document.querySelector(".tasks")
-    const div = document.createElement('div');
-    div.classList.add("task")
-    div.id = task.getId()
+    const tasksContainer = document.querySelector(".tasks")
+    const taskDiv = document.createElement('div');
+    taskDiv.classList.add("task")
+    taskDiv.id = task.getId()
 
     const firstTaskDiv = document.createElement('div');
     firstTaskDiv.classList.add("first-task-elements")
+
+    if (task.getPriority() == 'Low') {
+        taskDiv.style.borderLeft = '5px solid green';
+    } else if (task.getPriority() == 'Medium') {
+        taskDiv.style.borderLeft = '5px solid orange'
+    } else {
+        taskDiv.style.borderLeft = '5px solid red'
+    }
+
+    if (task.getStatus() == 'Complete') {
+        taskDiv.style.opacity = '0.5'
+    } else if (task.getStatus() == 'Incomplete') {
+        taskDiv.style.opactiy = '1'
+    }
 
     const title = document.createElement('div');
     title.classList.add("title")
@@ -73,8 +96,8 @@ function createTaskUI(task) {
 
     firstTaskDiv.append(title)
     lastTaskDiv.append(dateDiv, edit, deleteBtn)
-    div.append(firstTaskDiv, lastTaskDiv)
-    tasksDiv.append(div)
+    taskDiv.append(firstTaskDiv, lastTaskDiv)
+    tasksContainer.append(taskDiv)
 };
 
 function updateTaskUI(id) {
@@ -83,6 +106,20 @@ function updateTaskUI(id) {
 
     const taskTitle = taskDiv.childNodes[0]
     taskTitle.textContent = task.getTitle()
+
+    if (task.getPriority() == 'Low') {
+        taskDiv.style.borderLeft = '5px solid green';
+    } else if (task.getPriority() == 'Medium') {
+        taskDiv.style.borderLeft = '5px solid orange';
+    } else {
+        taskDiv.style.borderLeft = '5px solid red';
+    }
+
+    if (task.getStatus() == 'Complete') {
+        taskDiv.style.opacity = '0.5';
+    } else if (task.getStatus() == 'Incomplete') {
+        taskDiv.style.opacity = '1';
+    }
     
     const taskDueDate = taskDiv.childNodes[1].childNodes[0]
     taskDueDate.textContent = task.getDate()
@@ -128,7 +165,13 @@ tasksDiv.addEventListener('click', (e) => {
         const task = e.target.parentNode.parentNode
         defaultProject.removeTask(task.id)
         task.remove()
+    
+
+    // Details Button
+    } else if (e.target.matches("button")) {
+
     }
+
 });
 
 // Task Button Functionality
@@ -143,6 +186,9 @@ addTaskButton.addEventListener('click', (e) => {
     defaultProject.addTask(newTask)
     const formCard = document.querySelector(".form-card");
     formCard.reset();
+    const taskDate = document.getElementById('due-date')
+    const todayDate = new Date().toISOString().slice(0, 10);
+    taskDate.value = todayDate;
 })
 
 editTaskButton.addEventListener('click', (e) => {
