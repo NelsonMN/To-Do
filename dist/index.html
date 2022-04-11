@@ -10,24 +10,35 @@
 </head>
 <body>
     <div class="content">
+        <div class="header">
+            <h1>To Do</h1>
+            <button id="new-task" data-modal-target="#form" >Add Task</button>
+        </div>
+        
+        <div class="body">
 
-        <button id="new-task" data-modal-target="#form" >Add Task</button>
-
-        <div class="tasks">
-
-            <div class="task">
-                <div class="first-task-elements">
-                    <div class="title">Title</div>
-                </div>
-                <div class="last-task-elements">
-                    <div class="due-date">Due Date</div>
-                    <span class="edit material-icons-outlined">edit</span>
-                    <span class="delete material-icons-outlined">delete</span>
-                </div>
+            <div class="projects">
+                <div></div>
             </div>
 
-        </div>
+            <div class="tasks">
+                <div class="task">
+                    <div class="first-task-elements">
+                        <div class="title">Title</div>
+                    </div>
+                    <div class="last-task-elements">
+                        <button class="details">Details</button>
+                        <div class="due-date">Due Date</div>
+                        <span class="edit material-icons-outlined">edit</span>
+                        <span class="delete material-icons-outlined">delete</span>
+                    </div>
+                </div>
+                
+            </div>
 
+
+
+        </div>
         <div class="form" id="form">
             <div class="modal-header">
                 <span><strong>Add Task</strong></span>
@@ -111,25 +122,30 @@
         </div>
 
         <div id="task-details">
-            <div class="task-detail" id="task-title">
+            <div class="modal-header">
+                <span><strong>Task Details</strong></span>
+                <button data-close-button class="remove">&times;</button>
+            </div>
+            <div class="task-detail1" id="task-title">
                 <span>Title:</span>
-                <span id="task-title-output">Title</span>
+                <span id="task-title-output"></span>
             </div>
-            <div class="task-detail"id="task-due-date">
+            <div class="task-detail2"id="task-due-date">
                 <span>Due date:</span>
-                <span id="task-due-date-output">2022-04-11</span>
+                <span id="task-due-date-output"></span>
             </div>
-            <div class="task-detail" id="task-priority">
+            <div class="task-detail3" id="task-priority">
                 <span>Priority:</span>
-                <span id="task-priority-output">High</span>
+                <span id="task-priority-output"></span>
             </div>
-            <div class="task-detail" id="task-status">
+            <div class="task-detail4" id="task-status">
                 <span>Task Status:</span>
-                <span id="task-status-output">Incomplete</span>
+                <span id="task-status-output"></span>
             </div>
-            <div class="task-detail" id="task-detail">
+            <div class="task-detail5" id="task-detail">
                 <span>Details:</span> 
-                <p id="task-details-output">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti quia, facilis sed, cum ratione sint id distinctio, atque nobis beatae possimus sequi odio. Sit perferendis hic omnis consequatur quod culpa, iure assumenda suscipit. Eius quae, perferendis fuga ratione odio ipsa.</p>
+                <p id="task-details-output"></p>
+            </div>
         </div>
 
         <div id="overlay"></div>

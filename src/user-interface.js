@@ -82,6 +82,10 @@ function createTaskUI(task) {
     const lastTaskDiv = document.createElement('div');
     lastTaskDiv.classList.add("last-task-elements");
 
+    const detailsBtn = document.createElement('button')
+    detailsBtn.textContent = 'Details'
+    detailsBtn.classList.add('details')
+
     const dateDiv = document.createElement('div');
     dateDiv.classList.add('due-date');
     dateDiv.textContent = task.getDate()
@@ -95,7 +99,7 @@ function createTaskUI(task) {
     deleteBtn.textContent = 'delete';
 
     firstTaskDiv.append(title)
-    lastTaskDiv.append(dateDiv, edit, deleteBtn)
+    lastTaskDiv.append(detailsBtn, dateDiv, edit, deleteBtn)
     taskDiv.append(firstTaskDiv, lastTaskDiv)
     tasksContainer.append(taskDiv)
 };
@@ -121,7 +125,7 @@ function updateTaskUI(id) {
         taskDiv.style.opacity = '1';
     }
     
-    const taskDueDate = taskDiv.childNodes[1].childNodes[0]
+    const taskDueDate = taskDiv.childNodes[1].childNodes[1]
     taskDueDate.textContent = task.getDate()
 }
 
@@ -139,6 +143,7 @@ tasksDiv.addEventListener('click', (e) => {
         openForm(form)
 
         const id = e.target.parentNode.parentNode.id
+        console.log(id)
         const taskToEdit = defaultProject.getTask(id)
 
         taskId = id
@@ -168,8 +173,35 @@ tasksDiv.addEventListener('click', (e) => {
     
 
     // Details Button
-    } else if (e.target.matches("button")) {
+    } else if (e.target.matches("button") && e.target.textContent == 'Details') {
+        const id = e.target.parentNode.parentNode.id
+        const task = defaultProject.getTask(id)
 
+        taskId = id
+        
+        const title = document.getElementById("task-title-output")
+        const date = document.getElementById("task-due-date-output")
+        const priority = document.getElementById("task-priority-output")
+        const status = document.getElementById("task-status-output")
+        const details = document.getElementById("task-details-output")
+
+
+        title.textContent = task.getTitle()
+        date.textContent = task.getDate()
+        priority.textContent = task.getPriority()
+        status.textContent = task.getStatus()
+        details.textContent = task.getDescription()
+
+        const detailsModal = document.getElementById("task-details");
+        openForm(detailsModal)
+        
+        const closeModalButtons = document.querySelectorAll("[data-close-button]")
+        closeModalButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const form = button.closest("#task-details")
+                closeForm(form);
+            })
+        })
     }
 
 });
