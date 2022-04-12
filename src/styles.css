@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .content {
@@ -11,7 +12,7 @@
 
 .header {
     height: 100px;
-    padding: 15px 30px 50px;
+    padding: 20px 30px 50px;
     display: flex;
     justify-content: space-between;
 }
@@ -20,6 +21,9 @@
     display: flex;
     min-height: calc(100vh - 100px);
 }
+
+/* Title */
+
 
 /* Projects Tab */
 
@@ -60,13 +64,20 @@
     padding: 12.5px 0;
 }
 
-
+/* Editing Project */
 .edit-project-title.hidden,
 .edit-project-btn.hidden,
-.cancel-project-btn.hidden,
-#add-project.hidden {
+.cancel-project-btn.hidden {
     display: none;
 }
+
+/* Adding Project */
+#add-project.hidden, 
+.add-project.hidden {
+    display: none;
+}
+
+ 
 
 
 /* Task */
@@ -81,13 +92,14 @@
 
 .task {
     display: flex;
-    border: 1px solid black;
+    border: 1px solid rgb(102, 100, 100);
     width: 90%;
     padding: 10px 20px;
     border-radius: 10px;
     justify-content: space-between;
     transition: 0.2s;
     min-height: 50px;
+    background-color: white;
 }
 
 .details {
@@ -136,22 +148,22 @@
 
 .task-detail2 {
     display: flex;
-    gap: 77px;
+    gap: 67px;
 }
 
 .task-detail3 {
     display: flex;
-    gap: 85px;
+    gap: 83px;
 }
 
 .task-detail4 {
     display: flex;
-    gap: 61px;
+    gap: 48px;
 }
 
 .task-detail5 {
     display: flex;
-    gap: 89px;
+    gap: 86px;
 }
 
 #task-details-output {
@@ -265,8 +277,9 @@ select {
 .modal-header {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     align-items: center;
+    font-size: 18px
 }
 
 .submit {

@@ -9,12 +9,57 @@ const toDoList = ToDo()
 
 // Initialize Default Project
 const defaultProject = Project('Default Project')
+toDoList.addProject(defaultProject)
 
 
 // Initialize Form Defaults
 const taskDate = document.getElementById('due-date')
 const todayDate = new Date().toISOString().slice(0, 10);
 taskDate.value = todayDate;
+
+
+// Project UI
+
+function createProject() {
+   const projectTitle = projectTitleInput.value
+   const projectId = self.crypto.randomUUID();
+
+   const newProject = Project(projectTitle, projectId)
+   return newProject
+}
+
+function createProjectUI(project) {
+
+}
+
+// Add Project Event Listeners
+const addProjectBtn = document.querySelector('.add-project')
+const addProjectDiv = document.getElementById('add-project')
+const setProjectBtn = document.querySelector(".set-new-project-btn")
+const cancelProjectBtn = document.querySelector(".cancel-new-project-btn")
+const projectTitleInput = document.getElementById("project-title-input")
+
+addProjectBtn.addEventListener('click', () => {
+    
+    addProjectDiv.classList.toggle('hidden')
+    addProjectBtn.classList.toggle('hidden')
+})
+
+setProjectBtn.addEventListener('click', () => {
+    // Add Project
+    const newProject = createProject()
+    toDoList.addProject(newProject)
+    addProjectDiv.classList.toggle('hidden')
+    addProjectBtn.classList.toggle('hidden')
+    projectTitleInput.value = ''
+})
+
+cancelProjectBtn.addEventListener('click', () => {
+    addProjectDiv.classList.toggle('hidden')
+    addProjectBtn.classList.toggle('hidden')
+    projectTitleInput.value = ''
+})
+
 
 
 // Task UI
