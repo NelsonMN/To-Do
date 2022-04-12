@@ -26,8 +26,7 @@
 .projects {
     display: flex;
     flex-direction: column;
-    margin-top: 8px;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
     width: 300px;
 }
@@ -52,14 +51,21 @@
 }
 
 #project-title-input,
-.edit-title {
+.edit-project-title {
     width: 125px;
 }
 
-
 .project-title-div {
-    max-width: 125px;
+    width: 125px;
     padding: 12.5px 0;
+}
+
+
+.edit-project-title.hidden,
+.edit-project-btn.hidden,
+.cancel-project-btn.hidden,
+#add-project.hidden {
+    display: none;
 }
 
 
@@ -153,17 +159,25 @@
 }
 
 .edit,
-.delete {
+.delete,
+.edit-project,
+.delete-project {
     transition: 0.5s;
 }
 
-.edit:hover {
+.edit:hover,
+.edit-project:hover, 
+.edit-project-btn:hover,
+.set-new-project-btn:hover {
     color: rgb(1, 157, 1);
     transition: 0.5s;
     transform: scale(1.1);
 }
 
-.delete:hover {
+.delete:hover,
+.delete-project:hover,
+.cancel-project-btn:hover,
+.cancel-new-project-btn:hover {
     color: red;
     transition: 0.5s;
     transform: scale(1.1);
