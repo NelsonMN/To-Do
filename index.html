@@ -12,15 +12,40 @@
     <div class="content">
         <div class="header">
             <h1>To Do</h1>
-            <button id="new-task" data-modal-target="#form" >Add Task</button>
+            <button id="new-task" data-modal-target="#form">Add Task</button>
         </div>
         
         <div class="body">
 
             <div class="projects">
-                <div class="project">Home</div>
+                <div class="project">
+                    <div class="project-title-div">
+                        <span class="project-title">Default Task</span>
+                        <input class="edit-title" type="text" hidden>
+                    </div>
+                    <div class="edit-project-icons">
+                        <span class="edit material-icons-outlined">edit</span>
+                        <span class="delete material-icons-outlined">delete</span>
+                    </div>
+                </div>
+
+                <div class="project-input">
+                    <form id="add-project">
+                        <div class="add-project-title">
+                            <input type="text" id="project-title-input" value="Project Title">
+                        </div>
+                        <div class="edit-project-buttons">
+                            <button class="add-project-btn remove edit">&check;</button>
+                            <button class="remove delete">&times;</button>
+                        </div>
+                    </form>
+                </div>
                 <button class="add-project">Add Project</button>
+
             </div>
+            
+
+            
 
             <div class="tasks">
                 <div class="task">
@@ -29,15 +54,13 @@
                     </div>
                     <div class="last-task-elements">
                         <button class="details">Details</button>
-                        <div class="due-date">Due Date</div>
+                        <div class="due-date">2022-04-12</div>
                         <span class="edit material-icons-outlined">edit</span>
                         <span class="delete material-icons-outlined">delete</span>
                     </div>
                 </div>
                 
             </div>
-
-
 
         </div>
         <div class="form" id="form">
