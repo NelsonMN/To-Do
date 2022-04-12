@@ -21,30 +21,28 @@
                 <div class="project">
                     <div class="project-title-div">
                         <span class="project-title">Default Task</span>
-                        <input class="edit-title" type="text" hidden>
+                        <input class="edit-project-title hidden" type="text">
                     </div>
-                    <div class="edit-project-icons">
-                        <span class="edit material-icons-outlined">edit</span>
-                        <span class="delete material-icons-outlined">delete</span>
+                    <div class="edit-project-buttons">
+                        <span class="edit-project material-icons-outlined">edit</span>
+                        <span class="delete-project material-icons-outlined">delete</span>
+                        <span class="edit-project-btn material-icons-outlined hidden">check</span>
+                        <span class="cancel-project-btn material-icons-outlined hidden">cancel</span>
                     </div>
                 </div>
 
-                <div class="project-input">
-                    <form id="add-project">
-                        <div class="add-project-title">
-                            <input type="text" id="project-title-input" value="Project Title">
-                        </div>
-                        <div class="edit-project-buttons">
-                            <button class="add-project-btn remove edit">&check;</button>
-                            <button class="remove delete">&times;</button>
-                        </div>
-                    </form>
+                <div id="add-project">
+                    <div class="add-project-title">
+                    <input type="text" id="project-title-input" value="Project Title">
+                    </div>
+                    <div class="edit-project-buttons">
+                        <span class="set-new-project-btn material-icons-outlined">check</span>
+                        <span class="cancel-new-project-btn material-icons-outlined">cancel</span>
+                    </div>
                 </div>
                 <button class="add-project">Add Project</button>
 
             </div>
-            
-
             
 
             <div class="tasks">
