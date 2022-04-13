@@ -26,13 +26,18 @@
 
 
 /* Projects Tab */
-
+.sidebar,
 .projects {
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
     width: 300px;
+}
+
+.add-project {
+    display: flex;
+    align-items: center;
 }
 
 .project,

@@ -29,7 +29,45 @@ function createProject() {
 }
 
 function createProjectUI(project) {
+    const projectsContainer = document.querySelector(".projects")
+    const projectDiv = document.createElement('div')
+    const addProjectDiv = document.getElementById("add-project")
+    projectDiv.classList.add('project', 'highlight')
 
+    const projectTitleDiv = document.createElement('div')
+    projectTitleDiv.classList.add("project-title-div", "high-light")
+
+    const projectTitle = document.createElement('span')
+    projectTitle.classList.add("project-title", "high-light")
+    projectTitle.textContent = project.getProjectTitle()
+
+    const projectTitleInput = document.createElement('input')
+    projectTitleInput.classList.add("edit-project-title", "hidden")
+    projectTitle.type = "text"
+
+    const projectEditDiv = document.createElement('div')
+    projectEditDiv.classList.add("edit-project-buttons")
+
+    const editBtn = document.createElement('span')
+    editBtn.classList.add("edit-project", "material-icons-outlined")
+    editBtn.textContent = 'edit'
+
+    const deleteBtn = document.createElement('span')
+    deleteBtn.classList.add("delete-project", "material-icons-outlined")
+    deleteBtn.textContent = 'delete'
+
+    const checkBtn = document.createElement('span')
+    checkBtn.classList.add("edit-project-btn", "material-icons-outlined", "hidden")
+    checkBtn.textContent = 'check'
+
+    const cancelBtn = document.createElement('span')
+    cancelBtn.classList.add("cancel-project-btn", "material-icons-outlined", "hidden")
+    cancelBtn.textContent = 'cancel'
+
+    projectDiv.append(projectTitleDiv, projectEditDiv)
+    projectTitleDiv.append(projectTitle, projectTitleInput)
+    projectEditDiv.append(editBtn, deleteBtn, checkBtn, cancelBtn)
+    projectsContainer.insertBefore(projectDiv, addProjectDiv)
 }
 
 // Add Project Event Listeners
@@ -46,9 +84,11 @@ addProjectBtn.addEventListener('click', () => {
 })
 
 setProjectBtn.addEventListener('click', () => {
-    // Add Project
     const newProject = createProject()
     toDoList.addProject(newProject)
+    createProjectUI(newProject)
+
+
     addProjectDiv.classList.toggle('hidden')
     addProjectBtn.classList.toggle('hidden')
     projectTitleInput.value = ''
@@ -70,28 +110,40 @@ const projectStyle = `
     box-shadow: 5px 5px 5px #bcbcbc;
     `
 
-
-function removeBackgroundColor() {
+function removeProjectStyling() {
     projectDivs.forEach(e => {
         if (e.classList.contains('high-light')) {
             e.removeAttribute('style')
+            e.classList.remove('selected')
         }
     })
 }
 
+projects.addEventListener('click', (e) => {})
 
-function projectDivStyles(e) {
-    removeBackgroundColor()
+projects.addEventListener('click', (e) => {
+
+    // Hover / Selection styling
+    removeProjectStyling()
     if (e.target.matches("div") && e.target.classList.contains('project')) {
         e.target.style.cssText = projectStyle
+        e.target.classList.add('selected')
     } else if (e.target.matches("div") && e.target.classList.contains('project-title-div') && e.target.classList.contains('high-light')) {
         e.target.parentNode.style.cssText = projectStyle
+        e.target.parentNode.classList.add('selected')
     } else if (e.target.matches("span") && e.target.classList.contains('project-title') && e.target.classList.contains('high-light')) {
         e.target.parentNode.parentNode.style.cssText = projectStyle
+        e.target.parentNode.parentNode.classList.add('selected')
     }
-}
 
-projects.addEventListener('click', projectDivStyles)
+    // Edit Project
+//     if (e.target.matches("span") && e.target.textContent == 'edit') {
+
+//     }
+})
+
+
+
         
 
 // Task UI
@@ -223,8 +275,6 @@ tasksDiv.addEventListener('click', (e) => {
         openForm(form)
 
         const id = e.target.parentNode.parentNode.id
-        console.log(id)
-        const taskToEdit = defaultProject.getTask(id)
 
         taskId = id
         
