@@ -31,8 +31,10 @@ function createProject() {
 function createProjectUI(project) {
     const projectsContainer = document.querySelector(".projects")
     const projectDiv = document.createElement('div')
+    projectDiv.id = project.getProjectId()
+
     const addProjectDiv = document.getElementById("add-project")
-    projectDiv.classList.add('project', 'highlight')
+    projectDiv.classList.add('project', 'high-light')
 
     const projectTitleDiv = document.createElement('div')
     projectTitleDiv.classList.add("project-title-div", "high-light")
@@ -70,6 +72,7 @@ function createProjectUI(project) {
     projectsContainer.insertBefore(projectDiv, addProjectDiv)
 }
 
+
 // Add Project Event Listeners
 const addProjectBtn = document.querySelector('.add-project')
 const addProjectDiv = document.getElementById('add-project')
@@ -78,7 +81,6 @@ const cancelProjectBtn = document.querySelector(".cancel-new-project-btn")
 const projectTitleInput = document.getElementById("project-title-input")
 
 addProjectBtn.addEventListener('click', () => {
-    
     addProjectDiv.classList.toggle('hidden')
     addProjectBtn.classList.toggle('hidden')
 })
@@ -87,8 +89,6 @@ setProjectBtn.addEventListener('click', () => {
     const newProject = createProject()
     toDoList.addProject(newProject)
     createProjectUI(newProject)
-
-
     addProjectDiv.classList.toggle('hidden')
     addProjectBtn.classList.toggle('hidden')
     projectTitleInput.value = ''
@@ -102,15 +102,8 @@ cancelProjectBtn.addEventListener('click', () => {
 
 
 // Dynamic Project Event Listeners
-const projects = document.querySelector('.projects')
-const projectDivs = document.querySelectorAll ('.project')
-const projectStyle = `
-    transform: scale(1.01);
-    transition: 0.2s;
-    box-shadow: 5px 5px 5px #bcbcbc;
-    `
-
-function removeProjectStyling() {
+function removeProjectStylings() {
+    const projectDivs = document.querySelectorAll('.project')
     projectDivs.forEach(e => {
         if (e.classList.contains('high-light')) {
             e.removeAttribute('style')
@@ -119,12 +112,16 @@ function removeProjectStyling() {
     })
 }
 
-projects.addEventListener('click', (e) => {})
+const projects = document.querySelector('.projects')
+const projectStyle = `
+    transform: scale(1.01);
+    transition: 0.2s;
+    box-shadow: 5px 5px 5px #bcbcbc;
+    `
 
 projects.addEventListener('click', (e) => {
-
     // Hover / Selection styling
-    removeProjectStyling()
+    removeProjectStylings()
     if (e.target.matches("div") && e.target.classList.contains('project')) {
         e.target.style.cssText = projectStyle
         e.target.classList.add('selected')
@@ -137,14 +134,23 @@ projects.addEventListener('click', (e) => {
     }
 
     // Edit Project
-//     if (e.target.matches("span") && e.target.textContent == 'edit') {
+    if (e.target.matches("span") && e.target.textContent == 'edit') {}
 
-//     }
+    // Delete Project
+
+    if (e.target.matches("span") && e.target.textContent == 'delete') {
+        const project = e.target.parentNode.parentNode
+        const projectId = project.id
+        console.log(toDoList.getProjects()) 
+        toDoList.removeProject(projectId)
+        project.remove()
+        console.log(toDoList.getProjects()) 
+    }
+
+
 })
 
-
-
-        
+     
 
 // Task UI
 

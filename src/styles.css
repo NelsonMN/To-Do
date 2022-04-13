@@ -35,11 +35,6 @@
     width: 300px;
 }
 
-.add-project {
-    display: flex;
-    align-items: center;
-}
-
 .project,
 #add-project {
     display: flex;
@@ -51,7 +46,6 @@
     justify-content: space-around;
     border-radius: 10px;
     transition: 0.5s;
-    z-index: 10;
 }
 
 .edit-project-buttons {
