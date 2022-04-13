@@ -61,10 +61,42 @@ cancelProjectBtn.addEventListener('click', () => {
 })
 
 
+// Dynamic Project Event Listeners
+const projects = document.querySelector('.projects')
+const projectDivs = document.querySelectorAll ('.project')
+const projectStyle = `
+    transform: scale(1.01);
+    transition: 0.2s;
+    box-shadow: 5px 5px 5px #bcbcbc;
+    `
+
+
+function removeBackgroundColor() {
+    projectDivs.forEach(e => {
+        if (e.classList.contains('high-light')) {
+            e.removeAttribute('style')
+        }
+    })
+}
+
+
+function projectDivStyles(e) {
+    removeBackgroundColor()
+    if (e.target.matches("div") && e.target.classList.contains('project')) {
+        e.target.style.cssText = projectStyle
+    } else if (e.target.matches("div") && e.target.classList.contains('project-title-div') && e.target.classList.contains('high-light')) {
+        e.target.parentNode.style.cssText = projectStyle
+    } else if (e.target.matches("span") && e.target.classList.contains('project-title') && e.target.classList.contains('high-light')) {
+        e.target.parentNode.parentNode.style.cssText = projectStyle
+    }
+}
+
+projects.addEventListener('click', projectDivStyles)
+        
 
 // Task UI
 
-function createTask() {
+function createTask(project) {
     const taskTitle = document.getElementById('title').value
     const taskDescription = document.getElementById('description').value
     const taskDate = document.getElementById('due-date').value
@@ -81,7 +113,7 @@ function createTask() {
     return newTask
 }
 
-function updateTask() {
+function updateTask(project) {
     const taskToEdit = defaultProject.getTask(taskId)
     const taskTitle = document.getElementById('edit-title').value
     const taskDescription = document.getElementById('edit-description').value
@@ -178,7 +210,7 @@ function updateTaskUI(id) {
 }
 
 
-// Task Event Listeners
+// Dynamic Task Event Listeners
 
 let taskId // the variable to access a specific task id for editing
 

@@ -46,6 +46,7 @@
     justify-content: space-around;
     border-radius: 10px;
     transition: 0.5s;
+    z-index: 10;
 }
 
 .edit-project-buttons {
@@ -61,7 +62,6 @@
 
 .project-title-div {
     width: 125px;
-    padding: 12.5px 0;
 }
 
 /* Editing Project */
@@ -109,7 +109,6 @@
     cursor: pointer;
 }
 
-.project:hover,
 .task:hover {
     transform: scale(1.01);
     transition: 0.2s;
