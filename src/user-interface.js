@@ -133,21 +133,80 @@ projects.addEventListener('click', (e) => {
         e.target.parentNode.parentNode.classList.add('selected')
     }
 
-    // Edit Project
-    if (e.target.matches("span") && e.target.textContent == 'edit') {}
-
     // Delete Project
 
     if (e.target.matches("span") && e.target.textContent == 'delete') {
+
         const project = e.target.parentNode.parentNode
         const projectId = project.id
-        console.log(toDoList.getProjects()) 
         toDoList.removeProject(projectId)
         project.remove()
-        console.log(toDoList.getProjects()) 
     }
 
+    // Edit Project
+    if (e.target.matches("span") && e.target.textContent == 'edit') {
 
+        const title = e.target.parentNode.parentNode.children[0].children[0]
+        const input = e.target.parentNode.parentNode.children[0].children[1]
+        input.value = title.textContent
+
+        const editBtn = e.target.parentNode.children[0]
+        const deleteBtn = e.target.parentNode.children[1]
+        const editProjectBtn = e.target.parentNode.children[2]
+        const cancelBtn = e.target.parentNode.children[3]
+
+        title.classList.toggle("hidden")
+        input.classList.toggle("hidden")
+        editBtn.classList.toggle("hidden")
+        deleteBtn.classList.toggle("hidden")
+        editProjectBtn.classList.toggle("hidden")
+        cancelBtn.classList.toggle("hidden")
+    }
+
+    // Edit Project Title
+    if (e.target.matches("span") && e.target.textContent == 'check') {
+
+
+        const projectId = e.target.parentNode.parentNode.id
+        const project = toDoList.getProject(projectId)
+        
+        const title = e.target.parentNode.parentNode.children[0].children[0]
+        const input = e.target.parentNode.parentNode.children[0].children[1]
+        project.setProjectTitle(input.value)
+        title.textContent = project.getProjectTitle()
+
+        const editBtn = e.target.parentNode.children[0];
+        const deleteBtn = e.target.parentNode.children[1];
+        const editProjectBtn = e.target.parentNode.children[2];
+        const cancelBtn = e.target.parentNode.children[3];
+
+        title.classList.toggle("hidden")
+        input.classList.toggle("hidden")
+        editBtn.classList.toggle("hidden")
+        deleteBtn.classList.toggle("hidden")
+        editProjectBtn.classList.toggle("hidden")
+        cancelBtn.classList.toggle("hidden")
+    }
+
+    // Cancel Edit
+    if (e.target.matches("span") && e.target.textContent == 'close') {
+
+        e.target.parentNode.parentNode.style.cssText = projectStyle
+        e.target.parentNode.parentNode.classList.add('selected')
+    
+        const title = e.target.parentNode.parentNode.children[0].children[0]
+        const input = e.target.parentNode.parentNode.children[0].children[1]
+        const editBtn = e.target.parentNode.children[0];
+        const deleteBtn = e.target.parentNode.children[1];
+        const editProjectBtn = e.target.parentNode.children[2];
+        const cancelBtn = e.target.parentNode.children[3];
+
+        title.classList.toggle("hidden")
+        input.classList.toggle("hidden")
+        editBtn.classList.toggle("hidden")
+        deleteBtn.classList.toggle("hidden")
+        editProjectBtn.classList.toggle("hidden")
+        cancelBtn.classList.toggle("hidden")}
 })
 
      
@@ -281,7 +340,8 @@ tasksDiv.addEventListener('click', (e) => {
         openForm(form)
 
         const id = e.target.parentNode.parentNode.id
-
+        const taskToEdit = defaultProject.getTask(id)
+        
         taskId = id
         
         const taskTitle = document.getElementById('edit-title')
@@ -312,8 +372,6 @@ tasksDiv.addEventListener('click', (e) => {
     } else if (e.target.matches("button") && e.target.textContent == 'Details') {
         const id = e.target.parentNode.parentNode.id
         const task = defaultProject.getTask(id)
-
-        taskId = id
         
         const title = document.getElementById("task-title-output")
         const date = document.getElementById("task-due-date-output")

@@ -64,9 +64,12 @@
 }
 
 /* Editing Project */
+.project-title.hidden,
+.edit-project.hidden,
 .edit-project-title.hidden,
 .edit-project-btn.hidden,
-.cancel-project-btn.hidden {
+.cancel-project-btn.hidden,
+.delete-project.hidden {
     display: none;
 }
 
