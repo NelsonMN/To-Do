@@ -1,3 +1,5 @@
+import './styles.css'
+
 const Task = (title, description, dueDate, priority, status, id) => {
 
     const getTitle = () => title;
