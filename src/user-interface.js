@@ -117,7 +117,7 @@ const projectStyle = `
     transform: scale(1.01);
     transition: 0.2s;
     box-shadow: 5px 5px 5px #bcbcbc;
-    `
+    `;
 
 let projectDivId 
 
@@ -454,11 +454,17 @@ taskDate.value = todayDate;
 
 // Initialize Project
 
-const project = createProject()
-project.setProjectTitle('Default Project')
-toDoList.addProject(project)
-const projectDiv = createProjectUI(project)
-projectDivId = project.getProjectId()
-projectDiv.id = projectDivId
-projectDiv.classList.add("selected")
-projectDiv.style.cssText = projectStyle
+const programming = createProject();
+programming.setProjectTitle('Programming')
+toDoList.addProject(programming)
+const projectDiv = createProjectUI(programming)
+projectDivId = programming.getProjectId();
+projectDiv.id = projectDivId;
+projectDiv.style.cssText = projectStyle;
+
+const gym = createProject();
+gym.setProjectTitle('Gym')
+toDoList.addProject(gym)
+const projectDiv1 = createProjectUI(gym)
+projectDivId = gym.getProjectId();
+projectDiv1.id = projectDivId;
