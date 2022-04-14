@@ -1,22 +1,9 @@
 import {Task, Project, ToDo} from './index'
 import {openForm, closeForm} from './modal'
 
-
-// Initialize To-Do List
+// Project UI
 
 const toDoList = ToDo()
-
-
-// Initialize Default Project
-const defaultProject = Project('Default Project')
-toDoList.addProject(defaultProject)
-
-
-// Initialize Form Defaults
-const taskDate = document.getElementById('due-date')
-const todayDate = new Date().toISOString().slice(0, 10);
-taskDate.value = todayDate;
-
 
 // Project UI
 
@@ -70,6 +57,8 @@ function createProjectUI(project) {
     projectTitleDiv.append(projectTitle, projectTitleInput)
     projectEditDiv.append(editBtn, deleteBtn, checkBtn, cancelBtn)
     projectsContainer.insertBefore(projectDiv, addProjectDiv)
+
+    return projectDiv
 }
 
 
@@ -87,6 +76,7 @@ addProjectBtn.addEventListener('click', () => {
 
 setProjectBtn.addEventListener('click', () => {
     const newProject = createProject()
+    projectDivId = newProject.getProjectId()
     toDoList.addProject(newProject)
     createProjectUI(newProject)
     addProjectDiv.classList.toggle('hidden')
@@ -112,6 +102,31 @@ function removeProjectStylings() {
     })
 }
 
+function removeTasks() {
+    const taskDivs = document.querySelectorAll('.task')
+    taskDivs.forEach(e => e.remove())
+}
+    
+// function renderProjectTasks() {
+//     const taskArray = Array.from(document.querySelector('.tasks').children)
+//     let taskIdArray = []
+//     taskArray.forEach((item) => {
+//         if (!taskIdArray.includes(item.dataset.project)) {
+//         taskIdArray.push((item.dataset.project))}}
+//         )
+//     const notinProject = taskIdArray.filter((element) => element !== projectDivId)
+//     console.log(notinProject)
+//     notinProject.forEach(item => {
+//         const divs = document.querySelectorAll(`[data-project="${item}"]`)
+//         divs.forEach(item => item.style.visibility = 'hidden')
+//         })
+// }
+
+function renderProjectsTasksBetter() {
+    const projectTasks = toDoList.getProject(projectDivId).getTasks()
+    projectTasks.forEach((task) => createTaskUI(task))
+}
+
 const projects = document.querySelector('.projects')
 const projectStyle = `
     transform: scale(1.01);
@@ -119,18 +134,42 @@ const projectStyle = `
     box-shadow: 5px 5px 5px #bcbcbc;
     `
 
+let projectDivId 
+
 projects.addEventListener('click', (e) => {
+
     // Hover / Selection styling
+    removeTasks()
     removeProjectStylings()
     if (e.target.matches("div") && e.target.classList.contains('project')) {
         e.target.style.cssText = projectStyle
         e.target.classList.add('selected')
+        projectDivId = e.target.id
+        console.log(projectDivId)
+
+        // Render project tasks
+        // renderProjectTasks()
+        renderProjectsTasksBetter()
+        
     } else if (e.target.matches("div") && e.target.classList.contains('project-title-div') && e.target.classList.contains('high-light')) {
         e.target.parentNode.style.cssText = projectStyle
         e.target.parentNode.classList.add('selected')
+        projectDivId = e.target.parentNode.id
+        console.log(projectDivId)
+
+        // Render project tasks
+        // renderProjectTasks()
+        renderProjectsTasksBetter()
+
     } else if (e.target.matches("span") && e.target.classList.contains('project-title') && e.target.classList.contains('high-light')) {
         e.target.parentNode.parentNode.style.cssText = projectStyle
         e.target.parentNode.parentNode.classList.add('selected')
+        projectDivId = e.target.parentNode.parentNode.id
+        console.log(projectDivId)
+
+        // Render project tasks
+        // renderProjectTasks()
+        renderProjectsTasksBetter()
     }
 
     // Delete Project
@@ -145,6 +184,9 @@ projects.addEventListener('click', (e) => {
 
     // Edit Project
     if (e.target.matches("span") && e.target.textContent == 'edit') {
+
+        e.target.parentNode.parentNode.style.cssText = projectStyle
+        e.target.parentNode.parentNode.classList.add('selected')
 
         const title = e.target.parentNode.parentNode.children[0].children[0]
         const input = e.target.parentNode.parentNode.children[0].children[1]
@@ -165,7 +207,6 @@ projects.addEventListener('click', (e) => {
 
     // Edit Project Title
     if (e.target.matches("span") && e.target.textContent == 'check') {
-
 
         const projectId = e.target.parentNode.parentNode.id
         const project = toDoList.getProject(projectId)
@@ -189,7 +230,7 @@ projects.addEventListener('click', (e) => {
     }
 
     // Cancel Edit
-    if (e.target.matches("span") && e.target.textContent == 'close') {
+    if (e.target.matches("span") && e.target.textContent == 'cancel') {
 
         e.target.parentNode.parentNode.style.cssText = projectStyle
         e.target.parentNode.parentNode.classList.add('selected')
@@ -209,11 +250,10 @@ projects.addEventListener('click', (e) => {
         cancelBtn.classList.toggle("hidden")}
 })
 
-     
-
 // Task UI
 
-function createTask(project) {
+function createTask() {
+    const project = toDoList.getProject(projectDivId)
     const taskTitle = document.getElementById('title').value
     const taskDescription = document.getElementById('description').value
     const taskDate = document.getElementById('due-date').value
@@ -227,11 +267,13 @@ function createTask(project) {
     }
     const taskId = self.crypto.randomUUID();
     const newTask = Task(taskTitle, taskDescription, taskDate, taskPriority, taskStatus, taskId)
+    project.addTask(newTask)
+
     return newTask
 }
 
-function updateTask(project) {
-    const taskToEdit = defaultProject.getTask(taskId)
+function updateTask() {
+    const taskToEdit = toDoList.getProject(projectDivId).getTask(taskId)
     const taskTitle = document.getElementById('edit-title').value
     const taskDescription = document.getElementById('edit-description').value
     const taskDate = document.getElementById('edit-due-date').value
@@ -254,6 +296,7 @@ function createTaskUI(task) {
     const taskDiv = document.createElement('div');
     taskDiv.classList.add("task")
     taskDiv.id = task.getId()
+    taskDiv.dataset.project = projectDivId
 
     const firstTaskDiv = document.createElement('div');
     firstTaskDiv.classList.add("first-task-elements")
@@ -303,7 +346,7 @@ function createTaskUI(task) {
 
 function updateTaskUI(id) {
     const taskDiv = document.getElementById(id)
-    const task = defaultProject.getTask(id)
+    const task = toDoList.getProject(projectDivId).getTask(id)
 
     const taskTitle = taskDiv.childNodes[0]
     taskTitle.textContent = task.getTitle()
@@ -324,6 +367,7 @@ function updateTaskUI(id) {
     
     const taskDueDate = taskDiv.childNodes[1].childNodes[1]
     taskDueDate.textContent = task.getDate()
+    console.log(task.getTitle())
 }
 
 
@@ -340,7 +384,8 @@ tasksDiv.addEventListener('click', (e) => {
         openForm(form)
 
         const id = e.target.parentNode.parentNode.id
-        const taskToEdit = defaultProject.getTask(id)
+        const project = toDoList.getProject(projectDivId)
+        const taskToEdit = project.getTask(id)
         
         taskId = id
         
@@ -364,14 +409,17 @@ tasksDiv.addEventListener('click', (e) => {
     // Delete  
     } else if (e.target.matches("span") && e.target.textContent == "delete") {
         const task = e.target.parentNode.parentNode
-        defaultProject.removeTask(task.id)
+        console.log(toDoList.getProject(projectDivId).getTasks()[0].getTitle())
+        toDoList.getProject(projectDivId).removeTask(task.id)
+        
         task.remove()
+        console.log(toDoList.getProject(projectDivId).getTasks())
     
 
     // Details Button
     } else if (e.target.matches("button") && e.target.textContent == 'Details') {
         const id = e.target.parentNode.parentNode.id
-        const task = defaultProject.getTask(id)
+        const task = toDoList.getProject(projectDivId).getTask(id)
         
         const title = document.getElementById("task-title-output")
         const date = document.getElementById("task-due-date-output")
@@ -409,7 +457,6 @@ addTaskButton.addEventListener('click', (e) => {
     e.preventDefault()
     const newTask = createTask()
     createTaskUI(newTask)
-    defaultProject.addTask(newTask)
     const formCard = document.querySelector(".form-card");
     formCard.reset();
     const taskDate = document.getElementById('due-date')
@@ -422,3 +469,19 @@ editTaskButton.addEventListener('click', (e) => {
     updateTask()
     updateTaskUI(taskId)
 })
+
+// Initialize Form Defaults
+const taskDate = document.getElementById('due-date')
+const todayDate = new Date().toISOString().slice(0, 10);
+taskDate.value = todayDate;
+
+// Initialize Project
+
+const project = createProject()
+project.setProjectTitle('Default Project')
+toDoList.addProject(project)
+const projectDiv = createProjectUI(project)
+projectDivId = project.getProjectId()
+projectDiv.id = projectDivId
+projectDiv.classList.add("selected")
+projectDiv.style.cssText = projectStyle

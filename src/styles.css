@@ -39,7 +39,7 @@
 #add-project {
     display: flex;
     align-items: center;
-    font-size: 20px;
+    font-size: 16px;
     min-height: 50px;
     width: 250px;
     border: 1px solid rgb(102, 100, 100);
@@ -59,7 +59,9 @@
     width: 125px;
 }
 
-.project-title-div {
+.project-title-div,
+.project-title {
+    padding: 12.5px 0;
     width: 125px;
 }
 
@@ -78,8 +80,6 @@
 .add-project.hidden {
     display: none;
 }
-
- 
 
 
 /* Task */
@@ -129,6 +129,7 @@
 
 .title {
     padding-right: 20px;
+
 }
 
 .due-date {
