@@ -31,7 +31,7 @@ function createProjectUI(project) {
     projectTitle.textContent = project.getProjectTitle()
 
     const projectTitleInput = document.createElement('input')
-    projectTitleInput.classList.add("edit-project-title", "hidden")
+    projectTitleInput.classList.add("edit-project-title", "high-light", "hidden")
     projectTitle.type = "text"
 
     const projectEditDiv = document.createElement('div')
@@ -106,23 +106,8 @@ function removeTasks() {
     const taskDivs = document.querySelectorAll('.task')
     taskDivs.forEach(e => e.remove())
 }
-    
-// function renderProjectTasks() {
-//     const taskArray = Array.from(document.querySelector('.tasks').children)
-//     let taskIdArray = []
-//     taskArray.forEach((item) => {
-//         if (!taskIdArray.includes(item.dataset.project)) {
-//         taskIdArray.push((item.dataset.project))}}
-//         )
-//     const notinProject = taskIdArray.filter((element) => element !== projectDivId)
-//     console.log(notinProject)
-//     notinProject.forEach(item => {
-//         const divs = document.querySelectorAll(`[data-project="${item}"]`)
-//         divs.forEach(item => item.style.visibility = 'hidden')
-//         })
-// }
 
-function renderProjectsTasksBetter() {
+function renderProjectTasks() {
     const projectTasks = toDoList.getProject(projectDivId).getTasks()
     projectTasks.forEach((task) => createTaskUI(task))
 }
@@ -142,42 +127,38 @@ projects.addEventListener('click', (e) => {
     removeTasks()
     removeProjectStylings()
     if (e.target.matches("div") && e.target.classList.contains('project')) {
-        e.target.style.cssText = projectStyle
-        e.target.classList.add('selected')
-        projectDivId = e.target.id
-        console.log(projectDivId)
+        e.target.style.cssText = projectStyle;
+        projectDivId = e.target.id;
 
         // Render project tasks
-        // renderProjectTasks()
-        renderProjectsTasksBetter()
-        
-    } else if (e.target.matches("div") && e.target.classList.contains('project-title-div') && e.target.classList.contains('high-light')) {
+        renderProjectTasks()
+    } else if (e.target.matches("div") && (e.target.classList.contains('edit-project-title') || e.target.classList.contains('project-title-div')) && e.target.classList.contains('high-light')) {
         e.target.parentNode.style.cssText = projectStyle
-        e.target.parentNode.classList.add('selected')
         projectDivId = e.target.parentNode.id
-        console.log(projectDivId)
 
         // Render project tasks
-        // renderProjectTasks()
-        renderProjectsTasksBetter()
+        renderProjectTasks()
 
-    } else if (e.target.matches("span") && e.target.classList.contains('project-title') && e.target.classList.contains('high-light')) {
-        e.target.parentNode.parentNode.style.cssText = projectStyle
-        e.target.parentNode.parentNode.classList.add('selected')
-        projectDivId = e.target.parentNode.parentNode.id
-        console.log(projectDivId)
+    } else if (e.target.matches("span") && (e.target.classList.contains('project-title')) && e.target.classList.contains('high-light')) {
+        e.target.parentNode.parentNode.style.cssText = projectStyle;
+        projectDivId = e.target.parentNode.parentNode.id;
 
         // Render project tasks
-        // renderProjectTasks()
-        renderProjectsTasksBetter()
+        renderProjectTasks()
+        
+    } else if (e.target.matches("span") && (e.target.classList.contains('edit-project') || e.target.classList.contains('edit-project-btn') || e.target.classList.contains('cancel-project-btn'))) {
+        e.target.parentNode.parentNode.style.cssText = projectStyle;
+        projectDivId = e.target.parentNode.parentNode.id;
+
+        // Render project tasks
+        renderProjectTasks()
     }
-
     // Delete Project
 
     if (e.target.matches("span") && e.target.textContent == 'delete') {
 
-        const project = e.target.parentNode.parentNode
-        const projectId = project.id
+        const project = e.target.parentNode.parentNode;
+        const projectId = project.id;
         toDoList.removeProject(projectId)
         project.remove()
     }
@@ -367,7 +348,6 @@ function updateTaskUI(id) {
     
     const taskDueDate = taskDiv.childNodes[1].childNodes[1]
     taskDueDate.textContent = task.getDate()
-    console.log(task.getTitle())
 }
 
 
@@ -409,11 +389,8 @@ tasksDiv.addEventListener('click', (e) => {
     // Delete  
     } else if (e.target.matches("span") && e.target.textContent == "delete") {
         const task = e.target.parentNode.parentNode
-        console.log(toDoList.getProject(projectDivId).getTasks()[0].getTitle())
         toDoList.getProject(projectDivId).removeTask(task.id)
-        
         task.remove()
-        console.log(toDoList.getProject(projectDivId).getTasks())
     
 
     // Details Button
