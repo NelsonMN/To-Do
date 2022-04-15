@@ -5,6 +5,7 @@ module.exports = {
     './src/index.js',
     './src/user-interface.js',
     './src/modal.js',
+    './src/modal.js',
   ],
   devtool: 'inline-source-map',
   output: {
