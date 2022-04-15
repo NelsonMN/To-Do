@@ -440,8 +440,6 @@ input::placeholder, textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10
 }
 
 
-#new-task,
-.add-project,
 .edit-task,
 .add-task {
     padding: 5px 10px;
@@ -452,3 +450,12 @@ input::placeholder, textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10
     color: white;
 }
 
+#new-task,
+.add-project {
+    padding: 8px 25px;
+    border-radius: 8px;
+    border: 1px solid white;
+    cursor: pointer;
+    background-color: #143F6B;
+    color: white;
+}
