@@ -116,7 +116,8 @@ const projects = document.querySelector('.projects')
 const projectStyle = `
     transform: scale(1.01);
     transition: 0.2s;
-    box-shadow: 5px 5px 5px #bcbcbc;
+    box-shadow: 4px 4px 4px #e1dcdc;
+    border-color: #03254c;
     `;
 
 let projectDivId 
@@ -285,7 +286,7 @@ function createTaskUI(task) {
     if (task.getPriority() == 'Low') {
         taskDiv.style.borderLeft = '5px solid green';
     } else if (task.getPriority() == 'Medium') {
-        taskDiv.style.borderLeft = '5px solid orange'
+        taskDiv.style.borderLeft = '5px solid #FEB139';
     } else {
         taskDiv.style.borderLeft = '5px solid red'
     }
@@ -319,10 +320,11 @@ function createTaskUI(task) {
     deleteBtn.classList.add("delete", "material-icons-outlined");
     deleteBtn.textContent = 'delete';
 
+    const addButton = document.getElementById('new-task')
     firstTaskDiv.append(title)
     lastTaskDiv.append(detailsBtn, dateDiv, edit, deleteBtn)
     taskDiv.append(firstTaskDiv, lastTaskDiv)
-    tasksContainer.append(taskDiv)
+    tasksContainer.insertBefore(taskDiv, addButton)
 };
 
 function updateTaskUI(id) {
@@ -335,7 +337,7 @@ function updateTaskUI(id) {
     if (task.getPriority() == 'Low') {
         taskDiv.style.borderLeft = '5px solid green';
     } else if (task.getPriority() == 'Medium') {
-        taskDiv.style.borderLeft = '5px solid orange';
+        taskDiv.style.borderLeft = '5px solid #FEB139';
     } else {
         taskDiv.style.borderLeft = '5px solid red';
     }
@@ -455,16 +457,9 @@ taskDate.value = todayDate;
 // Initialize Project
 
 const programming = createProject();
-programming.setProjectTitle('Programming')
+programming.setProjectTitle('Default Project')
 toDoList.addProject(programming)
 const projectDiv = createProjectUI(programming)
 projectDivId = programming.getProjectId();
 projectDiv.id = projectDivId;
 projectDiv.style.cssText = projectStyle;
-
-const gym = createProject();
-gym.setProjectTitle('Gym')
-toDoList.addProject(gym)
-const projectDiv1 = createProjectUI(gym)
-projectDivId = gym.getProjectId();
-projectDiv1.id = projectDivId;

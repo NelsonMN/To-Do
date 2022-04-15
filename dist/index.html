@@ -9,9 +9,9 @@
 </head>
 <body>
     <div class="content">
+
         <div class="header">
-            <h1>To Do</h1>
-            <button id="new-task" data-modal-target="#form">Add Task</button>
+            <h1>// To Do</h1>
         </div>
         
         <div class="body">
@@ -20,7 +20,7 @@
 
                         <div id="add-project" class="hidden">
                             <div class="add-project-title hidden">
-                            <input type="text" id="project-title-input" class="hidden" placeholder="Project Title">
+                            <input type="text" id="project-title-input" class="hidden">
                             </div>
                             <div class="edit-project-buttons hidden">
                                 <span class="set-new-project-btn material-icons-outlined hidden">add</span>
@@ -33,9 +33,9 @@
                 </div>
             
 
-        <div class="tasks">
-        
-        </div>
+            <div class="tasks">
+                <button id="new-task" data-modal-target="#form">Add Task</button>
+            </div>
 
         </div>
         <div class="form" id="form">
@@ -145,6 +145,10 @@
                 <span>Details:</span> 
                 <p id="task-details-output"></p>
             </div>
+        </div>
+
+        <div class="footer">
+            <a href="https://github.com/NelsonMN">Created By: NelsonMM</a> 
         </div>
 
         <div id="overlay"></div>
