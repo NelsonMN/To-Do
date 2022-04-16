@@ -134,9 +134,11 @@ h1 {
     align-items: center;
     width: 300px;
     background-color: #FEB139;
-    
 }
 
+.edit-project-buttons {
+    gap: 20px;
+}
 
 .sidebar {
     padding-top: 20px;
@@ -160,7 +162,6 @@ h1 {
 .edit-project-buttons {
     display: flex;
     padding-right: 5px;
-    gap: 15px;
 }
 
 #project-title-input,
@@ -469,12 +470,43 @@ input::placeholder, textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10
     color: white;
 }
 
+/* Mobile Responsive */
+
 @media (max-width: 800px) {
     .body {
         display: flex;
         flex-direction: column;
         min-height: calc(100vh - 79px - 57px);
-        width: 100vw;;
+        width: 100vw;
+    }
+
+    .project {
+        width: 90%;
+        justify-content: space-between;
+        padding: 0 20px; 
+    }
+
+    #add-project {
+        width: 90%;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    .projects {
+        width: 100vw;
+    }
+
+    .edit-project-buttons {
+        gap: 20px;
+    }
+
+    .edit-project-title,
+    #project-title-input {
+        width: 175px;
+    }
+
+    .edit-project-buttons {
+        gap: 10px;
     }
 
     .sidebar,
@@ -515,6 +547,14 @@ input::placeholder, textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10
         gap: 10px;
     }
     
+    .project {
+        padding: 0 11px 0 20px; 
+    }
+
+    #add-project {
+        padding-right: 11px;
+    }
+
     .task {
         height: auto;
     }
