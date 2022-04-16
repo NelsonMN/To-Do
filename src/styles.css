@@ -5,17 +5,20 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
+@media (max-width: 800px) {
+
+}
+
 a {
     color: white;
     display: inline-block;
     text-decoration: none;
 }
 
-.content {
-    display: inline-block;
-    max-width: 100%;
-    min-height: 100%;
-}
+/* .content {
+    /* max-width: 100%;
+    min-height: 100%; 
+ */
 
 .header {
     padding: 20px 20px 20px;
@@ -24,6 +27,8 @@ a {
     background-color: #143F6B;
     color:white;
 }
+
+
 
 .footer {
     padding: 20px 20px 20px;
@@ -179,6 +184,10 @@ h1 {
     width: 125px;
 }
 
+.project-title {
+    overflow-wrap: anywhere;
+}
+
 /* Editing Project */
 .project-title.hidden,
 .edit-project.hidden,
@@ -219,7 +228,7 @@ h1 {
     transition: 0.2s;
     min-height: 50px;
     background-color: #143F6B;
-    color: white;
+    color: white; 
 }
 
 .details {
@@ -249,17 +258,18 @@ h1 {
 
 .title {
     padding-right: 20px;
-
+    overflow-wrap: normal;
 }
 
 .due-date {
-    min-width: 75px
+    min-width: 75px;
 }
 
 /* Task Modal */
 
 #task-details {
-    width: 400px;
+    min-width: 400px;
+    min-height: 205px;
     gap: 10px;
 }
 
@@ -283,13 +293,19 @@ h1 {
     gap: 48px;
 }
 
-.task-detail5 {
+.task-detail5 { 
     display: flex;
     gap: 86px;
 }
 
 #task-details-output {
-    display: inline-block;
+    overflow-wrap: normal;
+    width: 205px;
+}
+
+#task-title-output {
+    overflow-wrap: normal;
+    width: 205px;
 }
 
 .edit,
