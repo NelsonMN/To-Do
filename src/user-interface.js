@@ -133,6 +133,7 @@ projects.addEventListener('click', (e) => {
 
         // Render project tasks
         renderProjectTasks()
+        
     } else if (e.target.matches("div") && (e.target.classList.contains('edit-project-title') || e.target.classList.contains('project-title-div')) && e.target.classList.contains('high-light')) {
         e.target.parentNode.style.cssText = projectStyle
         projectDivId = e.target.parentNode.id
