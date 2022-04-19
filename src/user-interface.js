@@ -1,7 +1,6 @@
 import {Task, Project, ToDo} from './index'
 import {openForm, closeForm} from './modal'
 
-
 const toDoList = ToDo()
 let storage = {}
 // UI
@@ -306,7 +305,19 @@ function updateTask() {
         taskToEdit.setStatus('Complete')
     } else {
         taskToEdit.setStatus('Incomplete')
-    } 
+    }
+    
+    storage = localStorage.getItem('todolist')
+    storage = JSON.parse(storage)
+    const tasks = storage[`${toDoList.getProject(projectDivId).getProjectTitle()}**${toDoList.getProject(projectDivId).getProjectId()}`]
+    const task = tasks.find((task) => task[5] == taskToEdit.getId())
+    task[0] = taskToEdit.getTitle()
+    task[1] = taskToEdit.getDescription()
+    task[2] = taskToEdit.getDate()
+    task[3] = taskToEdit.getPriority()
+    task[4] = taskToEdit.getStatus()
+    storage[`${toDoList.getProject(projectDivId).getProjectTitle()}**${toDoList.getProject(projectDivId).getProjectId()}`] = tasks
+    localStorage.setItem('todolist', JSON.stringify(storage))
 }
 
 function createTaskUI(task) {
@@ -427,6 +438,16 @@ tasksDiv.addEventListener('click', (e) => {
     // Delete  
     } else if (e.target.matches("span") && e.target.textContent == "delete") {
         const task = e.target.parentNode.parentNode
+        const taskID = task.id
+
+        storage = localStorage.getItem('todolist')
+        storage = JSON.parse(storage)
+        const tasks = storage[`${toDoList.getProject(projectDivId).getProjectTitle()}**${toDoList.getProject(projectDivId).getProjectId()}`]
+        const taskToRemove = tasks.find((task) => task[5] == taskID)
+        const updatedTasks = tasks.filter(task => task !== taskToRemove)
+        storage[`${toDoList.getProject(projectDivId).getProjectTitle()}**${toDoList.getProject(projectDivId).getProjectId()}`] = updatedTasks
+        localStorage.setItem('todolist', JSON.stringify(storage))
+
         toDoList.getProject(projectDivId).removeTask(task.id)
         task.remove()
     
