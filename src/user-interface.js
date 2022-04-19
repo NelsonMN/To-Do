@@ -3,6 +3,7 @@ import {openForm, closeForm} from './modal'
 
 const toDoList = ToDo()
 let storage = {}
+
 // UI
 
 function createProject() {
