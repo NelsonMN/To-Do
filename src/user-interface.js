@@ -511,16 +511,7 @@ const taskDate = document.getElementById('due-date')
 const todayDate = new Date().toISOString().slice(0, 10);
 taskDate.value = todayDate;
 
-// Initialize Project
-
-// const programming = createProject();
-// programming.setProjectTitle('Default Project')
-// toDoList.addProject(programming)
-// const projectDiv = createProjectUI(programming)
-// projectDivId = programming.getProjectId();
-// projectDiv.id = projectDivId;
-// projectDiv.style.cssText = projectStyle;
-
+// Storage
 
 if (localStorage.getItem('todolist') !== null) {
     const storageString = localStorage.getItem('todolist')
