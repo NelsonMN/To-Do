@@ -1,17 +1,17 @@
 import {Task, Project, ToDo} from './index'
 import {openForm, closeForm} from './modal'
 
-// Project UI
 
 const toDoList = ToDo()
-
-// Project UI
+let storage = {}
+// UI
 
 function createProject() {
    const projectTitle = projectTitleInput.value
    const projectId = self.crypto.randomUUID();
-
    const newProject = Project(projectTitle, projectId)
+   toDoList.addProject(newProject)
+
    return newProject
 }
 
@@ -77,7 +77,18 @@ addProjectBtn.addEventListener('click', () => {
 setProjectBtn.addEventListener('click', () => {
     const newProject = createProject()
     projectDivId = newProject.getProjectId()
-    toDoList.addProject(newProject)
+    if (localStorage.getItem('todolist') !== null) {
+        storage = localStorage.getItem('todolist')
+        storage = JSON.parse(storage)
+        storage[`${newProject.getProjectTitle()}**${projectDivId}`] = []
+        localStorage.setItem('todolist', JSON.stringify(storage))
+    }
+    else {
+        storage = {}
+        storage[`${newProject.getProjectTitle()}**${projectDivId}`] = []
+        localStorage.setItem('todolist', JSON.stringify(storage))
+    }
+
     createProjectUI(newProject)
     addProjectDiv.classList.toggle('hidden')
     addProjectBtn.classList.toggle('hidden')
@@ -121,7 +132,7 @@ const projectStyle = `
     `;
 
 let projectDivId 
-
+const button = document.getElementById('new-task')
 projects.addEventListener('click', (e) => {
 
     // Hover / Selection styling
@@ -130,13 +141,15 @@ projects.addEventListener('click', (e) => {
     if (e.target.matches("div") && e.target.classList.contains('project')) {
         e.target.style.cssText = projectStyle;
         projectDivId = e.target.id;
+        button.classList.remove('hidden')
 
         // Render project tasks
         renderProjectTasks()
-        
+
     } else if (e.target.matches("div") && (e.target.classList.contains('edit-project-title') || e.target.classList.contains('project-title-div')) && e.target.classList.contains('high-light')) {
         e.target.parentNode.style.cssText = projectStyle
         projectDivId = e.target.parentNode.id
+        button.classList.remove('hidden')
 
         // Render project tasks
         renderProjectTasks()
@@ -144,6 +157,7 @@ projects.addEventListener('click', (e) => {
     } else if (e.target.matches("span") && (e.target.classList.contains('project-title')) && e.target.classList.contains('high-light')) {
         e.target.parentNode.parentNode.style.cssText = projectStyle;
         projectDivId = e.target.parentNode.parentNode.id;
+        button.classList.remove('hidden')
 
         // Render project tasks
         renderProjectTasks()
@@ -151,6 +165,7 @@ projects.addEventListener('click', (e) => {
     } else if (e.target.matches("span") && (e.target.classList.contains('edit-project') || e.target.classList.contains('edit-project-btn') || e.target.classList.contains('cancel-project-btn'))) {
         e.target.parentNode.parentNode.style.cssText = projectStyle;
         projectDivId = e.target.parentNode.parentNode.id;
+        button.classList.remove('hidden')
 
         // Render project tasks
         renderProjectTasks()
@@ -159,8 +174,15 @@ projects.addEventListener('click', (e) => {
 
     if (e.target.matches("span") && e.target.textContent == 'delete') {
 
-        const project = e.target.parentNode.parentNode;
-        const projectId = project.id;
+        const project = e.target.parentNode.parentNode
+        const projectId = project.id; 
+        const projectObject = toDoList.getProject(projectId)
+
+        storage = localStorage.getItem('todolist')
+        const storageObject = JSON.parse(storage)
+        delete storageObject[`${projectObject.getProjectTitle()}**${projectId}`]
+        localStorage.setItem('todolist', JSON.stringify(storageObject))
+
         toDoList.removeProject(projectId)
         project.remove()
     }
@@ -193,11 +215,19 @@ projects.addEventListener('click', (e) => {
 
         const projectId = e.target.parentNode.parentNode.id
         const project = toDoList.getProject(projectId)
+        const storageKeyToEdit = `${project.getProjectTitle()}**${projectId}`
         
         const title = e.target.parentNode.parentNode.children[0].children[0]
         const input = e.target.parentNode.parentNode.children[0].children[1]
+
         project.setProjectTitle(input.value)
         title.textContent = project.getProjectTitle()
+
+        storage = localStorage.getItem('todolist')
+        const storageObject = JSON.parse(storage)
+        storageObject[`${input.value}**${projectId}`] = storageObject[storageKeyToEdit]
+        delete storageObject[storageKeyToEdit]
+        localStorage.setItem('todolist', JSON.stringify(storageObject))
 
         const editBtn = e.target.parentNode.children[0];
         const deleteBtn = e.target.parentNode.children[1];
@@ -250,6 +280,11 @@ function createTask() {
     }
     const taskId = self.crypto.randomUUID();
     const newTask = Task(taskTitle, taskDescription, taskDate, taskPriority, taskStatus, taskId)
+    storage = localStorage.getItem('todolist')
+    storage = JSON.parse(storage)
+    storage[`${project.getProjectTitle()}**${project.getProjectId()}`].push([taskTitle, taskDescription, taskDate, taskPriority, taskStatus, taskId])
+    localStorage.setItem('todolist', JSON.stringify(storage))
+
     project.addTask(newTask)
 
     return newTask
@@ -457,10 +492,40 @@ taskDate.value = todayDate;
 
 // Initialize Project
 
-const programming = createProject();
-programming.setProjectTitle('Default Project')
-toDoList.addProject(programming)
-const projectDiv = createProjectUI(programming)
-projectDivId = programming.getProjectId();
-projectDiv.id = projectDivId;
-projectDiv.style.cssText = projectStyle;
+// const programming = createProject();
+// programming.setProjectTitle('Default Project')
+// toDoList.addProject(programming)
+// const projectDiv = createProjectUI(programming)
+// projectDivId = programming.getProjectId();
+// projectDiv.id = projectDivId;
+// projectDiv.style.cssText = projectStyle;
+
+
+if (localStorage.getItem('todolist') !== null) {
+    const storageString = localStorage.getItem('todolist')
+    const storage = JSON.parse(storageString)
+    const projectList = Object.keys(storage)
+
+    projectList.forEach(project => {
+        const newProject = Project()
+        toDoList.addProject(newProject)
+        newProject.setProjectTitle(project.split('**')[0])
+        newProject.setProjectId(project.split('**')[1])
+        createProjectUI(newProject)
+        const projectTasks = storage[project]
+        projectTasks.forEach(task => {
+            const newTask = Task()
+            newProject.addTask(newTask)
+            newTask.setTitle(task[0])
+            newTask.setDescription(task[1])
+            newTask.setDate(task[2])
+            newTask.setPriority(task[3])
+            newTask.setStatus(task[4])
+            newTask.setId(task[5])
+            createTaskUI(newTask)
+        })
+    })
+    removeTasks()
+    const button = document.getElementById('new-task')
+    button.classList.toggle('hidden')
+}
