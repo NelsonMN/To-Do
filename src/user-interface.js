@@ -373,7 +373,7 @@ function createTaskUI(task) {
     lastTaskDiv.append(detailsBtn, dateDiv, edit, deleteBtn)
     taskDiv.append(firstTaskDiv, lastTaskDiv)
     tasksContainer.insertBefore(taskDiv, addButton)
-};
+}
 
 function updateTaskUI(id) {
     const taskDiv = document.getElementById(id)

@@ -34,8 +34,6 @@ const Project = (projectTitle, projectId) => {
 
     const getTasks = () => project;
 
-    const setTasks = (newTasks) => project = newTasks
-
     const addTask = (task) => {
         project.push(task)
     };
@@ -44,7 +42,7 @@ const Project = (projectTitle, projectId) => {
         project = project.filter((task) => task.getId() !== id)
     };
 
-    return {getTasks, setTasks, getProjectTitle, getProjectId, setProjectTitle, setProjectId, getTask, addTask, removeTask}
+    return {getTasks, getProjectTitle, getProjectId, setProjectTitle, setProjectId, getTask, addTask, removeTask}
 };
 
 
@@ -58,8 +56,6 @@ const ToDo = () => {
 
     const getProjects = () => toDo;
 
-    const setProjects = (newProjects) => newProjects = toDo
-
     const addProject = (project) => {
         toDo.push(project)
     };
@@ -68,7 +64,7 @@ const ToDo = () => {
         toDo = toDo.filter((project) => project.getProjectId() !== projectId)
     };
     
-    return {getProject, getProjects, setProjects, addProject, removeProject}
+    return {getProject, getProjects, addProject, removeProject}
 };
 
 export {Task, Project, ToDo}
