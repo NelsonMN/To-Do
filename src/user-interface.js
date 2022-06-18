@@ -17,6 +17,7 @@ function createProject() {
 
 function createProjectUI(project) {
   const projectsContainer = document.querySelector(".projects");
+  
   const projectDiv = document.createElement("div");
   projectDiv.id = project.getProjectId();
 
@@ -69,14 +70,16 @@ function createProjectUI(project) {
   return projectDiv;
 }
 
-// Add Project Event Listeners
+// Add Project Event Listeners 
 const addProjectBtn = document.querySelector(".add-project");
 const addProjectDiv = document.getElementById("add-project");
+const newTask = document.getElementById('new-task')
 const setProjectBtn = document.querySelector(".set-new-project-btn");
 const cancelProjectBtn = document.querySelector(".cancel-new-project-btn");
 const projectTitleInput = document.getElementById("project-title-input");
 
 addProjectBtn.addEventListener("click", () => {
+  newTask.classList.add('hidden')
   addProjectDiv.classList.toggle("hidden");
   addProjectBtn.classList.toggle("hidden");
 });
@@ -132,8 +135,8 @@ const projects = document.querySelector(".projects");
 const projectStyle = `
     transform: scale(1.01);
     transition: 0.2s;
-    box-shadow: 4px 4px 4px #e1dcdc;
-    border-color: #03254c;
+    box-shadow: 0 0 10px 4px #ffff;
+    border-color: rgb(154, 154, 154);
     `;
 
 let projectDivId;
@@ -142,6 +145,7 @@ projects.addEventListener("click", (e) => {
   // Hover / Selection styling
   removeTasks();
   removeProjectStylings();
+  button.classList.add("hidden");
   if (e.target.matches("div") && e.target.classList.contains("project")) {
     e.target.style.cssText = projectStyle;
     projectDivId = e.target.id;
@@ -553,10 +557,9 @@ const todayDate = new Date().toISOString().slice(0, 10);
 taskDate.value = todayDate;
 
 // Storage
-
 if (localStorage.getItem("todolist") !== null) {
   const storageString = localStorage.getItem("todolist");
-  const storage = JSON.parse(storageString);
+  const storage = JSON.parse(storageString); 
   const projectList = Object.keys(storage);
 
   projectList.forEach((project) => {
@@ -579,6 +582,4 @@ if (localStorage.getItem("todolist") !== null) {
     });
   });
   removeTasks();
-  const button = document.getElementById("new-task");
-  button.classList.toggle("hidden");
 }
