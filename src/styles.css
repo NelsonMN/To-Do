@@ -198,9 +198,12 @@ h1 {
     transition: 0.5s;
 }
 
-.details:hover {
+.details:hover,
+#new-task:hover,
+.add-project:hover {
     color: var(--main-color);
     background-color: rgb(239, 239, 239);
+    border: 1px solid var(--main-color);
 }
 
 .task:hover {
@@ -436,13 +439,12 @@ input::placeholder, textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10
     border: none;
     cursor: pointer;
     background-color: var(--main-color);
-    opacity: 0.8;
+    opacity: 1;
     color: white;
+    transition: 0.5s;
 }
 
 .project:hover,
-#new-task:hover,
-.add-project:hover,
 .edit-task:hover,
 .add-task:hover {
     opacity: 1;
