@@ -456,12 +456,12 @@ input::placeholder, textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10
     .body {
         display: flex;
         flex-direction: column;
-        min-height: calc(100vh - 79px - 57px);
+        min-height: calc(100vh - 77px - 58px);
         width: 100vw;
     }
 
     .project {
-        width: 90%;
+        width: 96.5%;
         justify-content: space-between;
         padding: 0 20px; 
     }
